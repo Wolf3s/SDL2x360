@@ -640,6 +640,8 @@ const char *SDL_GetPlatform(void)
     return "Solaris";
 #elif defined (__XBOX__)
 	return "Xbox";	
+#elif defined(__XBOX_360__)
+	return "Xbox 360";
 #elif defined(__WIN32__)
     return "Windows";
 #elif defined(__WINRT__)

@@ -30,7 +30,7 @@
 #include "SDL_stdinc.h"
 #include "../libm/math_libm.h"
 
-#ifdef __XBOX__
+#if defined(__XBOX__) || defined(__XBOX_360__)
 #include <Math.h>
 #include <Memory.h>
 #endif

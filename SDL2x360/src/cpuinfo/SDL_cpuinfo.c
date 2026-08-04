@@ -696,7 +696,7 @@ int SDL_GetCPUCount(void)
             SDL_CPUCount = info.dwNumberOfProcessors;
         }
 #endif
-#ifdef __XBOX__
+#if defined(__XBOX__) || defined(__XBOX_360__)
 		if (SDL_CPUCount <= 0) {
 			SDL_CPUCount = 1;
 		}

@@ -22,9 +22,13 @@
 
 #include "../SDL_sysjoystick.h"
 
+#ifdef SDL_JOYSTICK_XINPUT
+
 #include "SDL_hints.h"
 #include "SDL_timer.h"
+#include "SDL_windowsjoystick_c.h"
 #include "SDL_xinputjoystick_c.h"
+#include "SDL_rawinputjoystick_c.h"
 #include "../hidapi/SDL_hidapijoystick_c.h"
 
 /* Set up for C function definitions, even when using C++ */
@@ -39,7 +43,19 @@ static SDL_bool s_bXInputEnabled = SDL_FALSE;
 
 static SDL_bool SDL_XInputUseOldJoystickMapping(void)
 {
+#ifdef __WINRT__
+    /* TODO: remove this __WINRT__ block, but only after integrating with UWP/WinRT's HID API */
+    /* FIXME: Why are Win8/10 different here? -flibit */
+    return NTDDI_VERSION < NTDDI_WIN10;
+#elif defined(__XBOXONE__) || defined(__XBOXSERIES__)
     return SDL_FALSE;
+#else
+    static int s_XInputUseOldJoystickMapping = -1;
+    if (s_XInputUseOldJoystickMapping < 0) {
+        s_XInputUseOldJoystickMapping = SDL_GetHintBoolean(SDL_HINT_XINPUT_USE_OLD_JOYSTICK_MAPPING, SDL_FALSE);
+    }
+    return s_XInputUseOldJoystickMapping > 0;
+#endif
 }
 
 SDL_bool SDL_XINPUT_Enabled(void)
@@ -149,6 +165,20 @@ static void AddXInputDevice(Uint8 userid, BYTE SubType, JoyStick_DeviceData **pC
     JoyStick_DeviceData *pPrevJoystick = NULL;
     JoyStick_DeviceData *pNewJoystick = *pContext;
 
+#ifdef SDL_JOYSTICK_RAWINPUT
+    if (RAWINPUT_IsEnabled()) {
+        /* The raw input driver handles more than 4 controllers, so prefer that when available */
+        /* We do this check here rather than at the top of SDL_XINPUT_JoystickDetect() because
+           we need to check XInput state before RAWINPUT gets a hold of the device, otherwise
+           when a controller is connected via the wireless adapter, it will shut down at the
+           first subsequent XInput call. This seems like a driver stack bug?
+
+           Reference: https://github.com/libsdl-org/SDL/issues/3468
+         */
+        return;
+    }
+#endif
+
     if (SDL_XInputUseOldJoystickMapping() && SubType != XINPUT_DEVSUBTYPE_GAMEPAD) {
         return;
     }
@@ -199,6 +229,23 @@ static void AddXInputDevice(Uint8 userid, BYTE SubType, JoyStick_DeviceData **pC
         SDL_free(pNewJoystick);
         return;
     }
+
+#ifdef SDL_JOYSTICK_HIDAPI
+    /* Since we're guessing about the VID/PID, use a hard-coded VID/PID to represent XInput */
+    if (HIDAPI_IsDevicePresent(USB_VENDOR_MICROSOFT, USB_PRODUCT_XBOX360_XUSB_CONTROLLER, version, pNewJoystick->joystickname)) {
+        /* The HIDAPI driver is taking care of this device */
+        SDL_free(pNewJoystick);
+        return;
+    }
+#endif
+
+#ifdef SDL_JOYSTICK_RAWINPUT
+    if (RAWINPUT_IsDevicePresent(vendor, product, version, pNewJoystick->joystickname)) {
+        /* The RAWINPUT driver is taking care of this device */
+        SDL_free(pNewJoystick);
+        return;
+    }
+#endif
 
     WINDOWS_AddJoystickDevice(pNewJoystick);
 }
@@ -385,9 +432,20 @@ void SDL_XINPUT_JoystickUpdate(SDL_Joystick *joystick)
         return;
     }
 
-
+#if defined(__XBOXONE__) || defined(__XBOXSERIES__)
     /* XInputOnGameInput doesn't ever change dwPacketNumber, so have to just update every frame */
     UpdateXInputJoystickState(joystick, &XInputState, &XBatteryInformation);
+#else
+    /* only fire events if the data changed from last time */
+    if (XInputState.dwPacketNumber && XInputState.dwPacketNumber != joystick->hwdata->dwPacketNumber) {
+        if (SDL_XInputUseOldJoystickMapping()) {
+            UpdateXInputJoystickState_OLD(joystick, &XInputState, &XBatteryInformation);
+        } else {
+            UpdateXInputJoystickState(joystick, &XInputState, &XBatteryInformation);
+        }
+        joystick->hwdata->dwPacketNumber = XInputState.dwPacketNumber;
+    }
+#endif
 }
 
 void SDL_XINPUT_JoystickClose(SDL_Joystick *joystick)
@@ -406,5 +464,52 @@ void SDL_XINPUT_JoystickQuit(void)
 #ifdef __cplusplus
 }
 #endif
+
+#else /* !SDL_JOYSTICK_XINPUT */
+
+typedef struct JoyStick_DeviceData JoyStick_DeviceData;
+
+SDL_bool SDL_XINPUT_Enabled(void)
+{
+    return SDL_FALSE;
+}
+
+int SDL_XINPUT_JoystickInit(void)
+{
+    return 0;
+}
+
+void SDL_XINPUT_JoystickDetect(JoyStick_DeviceData **pContext)
+{
+}
+
+int SDL_XINPUT_JoystickOpen(SDL_Joystick *joystick, JoyStick_DeviceData *joystickdevice)
+{
+    return SDL_Unsupported();
+}
+
+int SDL_XINPUT_JoystickRumble(SDL_Joystick *joystick, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble)
+{
+    return SDL_Unsupported();
+}
+
+Uint32 SDL_XINPUT_JoystickGetCapabilities(SDL_Joystick *joystick)
+{
+    return 0;
+}
+
+void SDL_XINPUT_JoystickUpdate(SDL_Joystick *joystick)
+{
+}
+
+void SDL_XINPUT_JoystickClose(SDL_Joystick *joystick)
+{
+}
+
+void SDL_XINPUT_JoystickQuit(void)
+{
+}
+
+#endif /* SDL_JOYSTICK_XINPUT */
 
 /* vi: set ts=4 sw=4 expandtab: */

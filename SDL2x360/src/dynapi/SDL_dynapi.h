@@ -61,7 +61,7 @@
 #define SDL_DYNAMIC_API 0
 #elif defined(__clang_analyzer__) || defined(SDL_THREAD_SAFETY_ANALYSIS)
 #define SDL_DYNAMIC_API 0 /* Turn off for static analysis, so reports are more clear. */
-#elif defined(__XBOX__)
+#elif defined(__XBOX__) || defined(__XBOX_360__)
 #define SDL_DYNAMIC_API 0
 #elif defined(__VITA__)
 #define SDL_DYNAMIC_API 0 /* vitasdk doesn't support dynamic linking */

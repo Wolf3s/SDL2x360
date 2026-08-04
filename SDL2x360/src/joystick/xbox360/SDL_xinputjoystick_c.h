@@ -21,29 +21,11 @@
 #include "../../SDL_internal.h"
 
 #include "../../core/xbox360/SDL_xinput.h"
-#include "../../core/xbox360/SDL_directx.h"
-
 
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-typedef struct JoyStick_DeviceData
-{
-    SDL_JoystickGUID guid;
-    char *joystickname;
-    Uint8 send_add_event;
-    SDL_JoystickID nInstanceID;
-    SDL_bool bXInputDevice;
-    BYTE SubType;
-    Uint8 XInputUserId;
-    DIDEVICEINSTANCE dxdevice;
-    char path[MAX_PATH];
-    int steam_virtual_gamepad_slot;
-    struct JoyStick_DeviceData *pNext;
-} JoyStick_DeviceData;
-
 
 extern SDL_bool SDL_XINPUT_Enabled(void);
 extern int SDL_XINPUT_JoystickInit(void);

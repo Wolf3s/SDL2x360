@@ -1787,8 +1787,8 @@ SDL_Window *SDL_CreateWindow(const char *title, int x, int y, int w, int h, Uint
     window->windowed.y = window->y;
     window->windowed.w = window->w;
     window->windowed.h = window->h;
-#if defined(__XBOX__)
-    /* Force fullscreen on OG Xbox, windowing isn’t supported */
+#if defined(__XBOX__) || defined(__XBOX_360__)
+    /* Force fullscreen on OG Xbox and Xbox 360, windowing isn’t supported */
     flags |= SDL_WINDOW_FULLSCREEN;
 #endif
 
@@ -4367,8 +4367,8 @@ static void CreateMaskFromColorKeyOrAlpha(SDL_Surface * icon, Uint8 * mask, int 
  */
 void SDL_WM_SetIcon(SDL_Surface *icon, Uint8 *mask)
 {
-#ifdef __XBOX__
-    /* No window icon support on original Xbox. */
+#if defined(__XBOX__) || defined(__XBOX_360__)
+    /* No window icon support on original Xbox and Xbox 360. */
     (void)icon; (void)mask;
     return;
 #else

@@ -201,7 +201,7 @@
 #endif
 #endif /* defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__) */
 
-#if defined(__WINDOWS__) && !defined(__XBOX__)
+#if defined(__WINDOWS__) && !defined(__XBOX__) && !defined(__XBOX_360__)
 #undef __WIN32__
 #define __WIN32__ 1
 #endif

@@ -445,7 +445,7 @@ void SDL_LogMessageV(int category, SDL_LogPriority priority, const char *fmt, va
         }
     }
 	
-	#if defined(__XBOX__) && defined(XBOX_DEBUG_LOGGING)
+	#if defined(__XBOX__) || defined(__XBOX_360__) && defined(XBOX_DEBUG_LOGGING)
 	/* Echo the final UTF-8 message to the Xbox debug output. 
 	   Keep it simple/robust: use ANSI path so we don’t depend on wchar helpers. */
 	OutputDebugStringA(message);

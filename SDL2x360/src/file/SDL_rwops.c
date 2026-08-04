@@ -34,6 +34,8 @@
 #include "../core/windows/SDL_windows.h"
 #elif defined(__XBOX__)
 #include "../core/xbox/SDL_xbox.h"
+#elif defined(__XBOX_360__)
+#include "../core/xbox360/SDL_xbox360.h"
 #endif
 
 #ifdef HAVE_STDIO_H
@@ -70,7 +72,7 @@
 #endif
 
 /* ---- OG Xbox XDK: no fstat/fileno, but we still want stdio ---- */
-#if defined(HAVE_STDIO_H) && defined(SDL_PLATFORM_XBOX_RXDK)
+#if defined(HAVE_STDIO_H) && defined(SDL_PLATFORM_XBOX_RXDK) || defined(SDL_PLATFORM_XBOX_360) 
 static SDL_bool IsRegularFileOrPipe(FILE* f) { (void)f; return SDL_TRUE; }
 #endif
 
@@ -87,7 +89,7 @@ static SDL_bool IsRegularFileOrPipe(FILE* f) { (void)f; return SDL_TRUE; }
 
 static int SDLCALL windows_file_open(SDL_RWops *context, const char *filename, const char *mode)
 {
-#if !defined(__XBOXONE__) && !defined(__XBOXSERIES__)
+#if !defined(__XBOXONE__) && !defined(__XBOXSERIES__) && !defined(__XBOX_360__)
     UINT old_error_mode;
 #endif
     HANDLE h;
@@ -127,7 +129,7 @@ static int SDLCALL windows_file_open(SDL_RWops *context, const char *filename, c
     if (!context->hidden.windowsio.buffer.data) {
         return SDL_OutOfMemory();
     }
-#if !defined(__XBOXONE__) && !defined(__XBOXSERIES__)
+#if !defined(__XBOXONE__) && !defined(__XBOXSERIES__) && !defined(__XBOX_360__)
     /* Do not open a dialog box if failure */
     old_error_mode =
         SetErrorMode(SEM_NOOPENFILEERRORBOX | SEM_FAILCRITICALERRORS);
@@ -142,7 +144,7 @@ static int SDLCALL windows_file_open(SDL_RWops *context, const char *filename, c
         SDL_free(tstr);
     }
 
-#if !defined(__XBOXONE__) && !defined(__XBOXSERIES__)
+#if !defined(__XBOXONE__) && !defined(__XBOXSERIES__) && !defined(__XBOX_360__)
     /* restore old behavior */
     SetErrorMode(old_error_mode);
 #endif

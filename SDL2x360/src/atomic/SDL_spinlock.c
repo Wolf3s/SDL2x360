@@ -29,6 +29,11 @@
 #include <xtl.h>
 #endif
 
+#if defined(__XBOX_360__)
+#include "../core/xbox360/SDL_xbox360.h"
+#include <xtl.h>
+#endif
+
 #include "SDL_atomic.h"
 #include "SDL_mutex.h"
 #include "SDL_timer.h"

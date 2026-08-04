@@ -193,6 +193,7 @@ extern AudioBootStrap NACLAUDIO_bootstrap;
 extern AudioBootStrap NAS_bootstrap;
 extern AudioBootStrap WASAPI_bootstrap;
 extern AudioBootStrap DSOUND_bootstrap;
+extern AudioBootStrap XAUDIO2_bootstrap;
 extern AudioBootStrap WINMM_bootstrap;
 extern AudioBootStrap PAUDIO_bootstrap;
 extern AudioBootStrap HAIKUAUDIO_bootstrap;

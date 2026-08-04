@@ -33,6 +33,10 @@
 #include "../core/xbox/SDL_xbox.h"
 #endif
 
+#if defined(__XBOX_360__)
+#include "../core/xbox360/SDL_xbox360.h"
+#endif
+
 #if defined(__ANDROID__)
 #include "../core/android/SDL_android.h"
 #endif

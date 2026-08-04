@@ -120,16 +120,19 @@
     <ClInclude Include="include\SDL_version.h" />
     <ClInclude Include="include\SDL_video.h" />
     <ClInclude Include="include\SDL_vulkan.h" />
-    <ClInclude Include="src\audio\dummy\SDL_dummyaudio.h" />
     <ClInclude Include="src\audio\SDL_audiodev_c.h" />
     <ClInclude Include="src\audio\SDL_audio_c.h" />
     <ClInclude Include="src\audio\SDL_audio_channel_converters.h" />
     <ClInclude Include="src\audio\SDL_audio_resampler_filter.h" />
     <ClInclude Include="src\audio\SDL_sysaudio.h" />
     <ClInclude Include="src\audio\SDL_wave.h" />
+    <ClInclude Include="src\audio\xaudio2\SDL_xaudio2.h" />
     <ClInclude Include="src\core\xbox360\SDL_directx.h" />
     <ClInclude Include="src\core\xbox360\SDL_xbox360.h" />
     <ClInclude Include="src\core\xbox360\SDL_xinput.h" />
+    <ClInclude Include="src\dynapi\SDL_dynapi.h" />
+    <ClInclude Include="src\dynapi\SDL_dynapi_overrides.h" />
+    <ClInclude Include="src\dynapi\SDL_dynapi_procs.h" />
     <ClInclude Include="src\events\blank_cursor.h" />
     <ClInclude Include="src\events\default_cursor.h" />
     <ClInclude Include="src\events\imKStoUCS.h" />
@@ -149,9 +152,24 @@
     <ClInclude Include="src\events\SDL_scancode_tables_c.h" />
     <ClInclude Include="src\events\SDL_touch_c.h" />
     <ClInclude Include="src\events\SDL_windowevents_c.h" />
+    <ClInclude Include="src\joystick\controller_list.h" />
+    <ClInclude Include="src\joystick\controller_type.h" />
+    <ClInclude Include="src\joystick\SDL_gamecontrollerdb.h" />
+    <ClInclude Include="src\joystick\SDL_joystick_c.h" />
+    <ClInclude Include="src\joystick\SDL_steam_virtual_gamepad.h" />
+    <ClInclude Include="src\joystick\SDL_sysjoystick.h" />
+    <ClInclude Include="src\joystick\usb_ids.h" />
+    <ClInclude Include="src\joystick\xbox360\SDL_dinputjoystick_c.h" />
+    <ClInclude Include="src\joystick\xbox360\SDL_rawinputjoystick_c.h" />
+    <ClInclude Include="src\joystick\xbox360\SDL_windowsjoystick_c.h" />
+    <ClInclude Include="src\joystick\xbox360\SDL_xinputjoystick_c.h" />
     <ClInclude Include="src\libm\math_libm.h" />
     <ClInclude Include="src\libm\math_private.h" />
     <ClInclude Include="src\locale\SDL_syslocale.h" />
+    <ClInclude Include="src\power\SDL_syspower.h" />
+    <ClInclude Include="src\render\SDL_d3dmath.h" />
+    <ClInclude Include="src\render\SDL_sysrender.h" />
+    <ClInclude Include="src\render\SDL_yuv_sw_c.h" />
     <ClInclude Include="src\render\software\SDL_blendfillrect.h" />
     <ClInclude Include="src\render\software\SDL_blendline.h" />
     <ClInclude Include="src\render\software\SDL_blendpoint.h" />
@@ -169,32 +187,64 @@
     <ClInclude Include="src\SDL_list.h" />
     <ClInclude Include="src\SDL_log_c.h" />
     <ClInclude Include="src\SDL_utils_c.h" />
+    <ClInclude Include="src\sensor\SDL_sensor_c.h" />
+    <ClInclude Include="src\sensor\SDL_syssensor.h" />
     <ClInclude Include="src\stdlib\SDL_vacopy.h" />
     <ClInclude Include="src\thread\generic\SDL_syscond_c.h" />
-    <ClInclude Include="src\thread\generic\SDL_sysmutex_c.h" />
-    <ClInclude Include="src\thread\generic\SDL_systhread_c.h" />
+    <ClInclude Include="src\thread\SDL_systhread.h" />
+    <ClInclude Include="src\thread\SDL_thread_c.h" />
+    <ClInclude Include="src\thread\xbox360\SDL_sysmutex_c.h" />
+    <ClInclude Include="src\thread\xbox360\SDL_systhread_c.h" />
+    <ClInclude Include="src\timer\SDL_timer_c.h" />
     <ClInclude Include="src\video\dummy\SDL_nullevents_c.h" />
     <ClInclude Include="src\video\dummy\SDL_nullframebuffer_c.h" />
     <ClInclude Include="src\video\dummy\SDL_nullvideo.h" />
+    <ClInclude Include="src\video\SDL_blit.h" />
+    <ClInclude Include="src\video\SDL_blit_auto.h" />
+    <ClInclude Include="src\video\SDL_blit_copy.h" />
+    <ClInclude Include="src\video\SDL_blit_slow.h" />
+    <ClInclude Include="src\video\SDL_egl_c.h" />
+    <ClInclude Include="src\video\SDL_pixels_c.h" />
+    <ClInclude Include="src\video\SDL_rect_c.h" />
+    <ClInclude Include="src\video\SDL_rect_impl.h" />
+    <ClInclude Include="src\video\SDL_RLEaccel_c.h" />
+    <ClInclude Include="src\video\SDL_shape_internals.h" />
+    <ClInclude Include="src\video\SDL_sysvideo.h" />
+    <ClInclude Include="src\video\SDL_vulkan_internal.h" />
+    <ClInclude Include="src\video\SDL_yuv_c.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_common.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_internal.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_lsx.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_lsx_func.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_sse.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_sse_func.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_std.h" />
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_std_func.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\SDL_config.h.cmake" />
     <None Include="include\SDL_config.h.in" />
     <None Include="include\SDL_revision.h.cmake" />
+    <None Include="src\joystick\sort_controllers.py" />
+    <None Include="src\video\sdlgenblit.pl" />
+    <None Include="src\video\yuv2rgb\LICENSE" />
+    <None Include="src\video\yuv2rgb\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\atomic\SDL_atomic.c" />
     <ClCompile Include="src\atomic\SDL_spinlock.c" />
-    <ClCompile Include="src\audio\dummy\SDL_dummyaudio.c" />
     <ClCompile Include="src\audio\SDL_audio.c" />
     <ClCompile Include="src\audio\SDL_audiocvt.c" />
     <ClCompile Include="src\audio\SDL_audiodev.c" />
     <ClCompile Include="src\audio\SDL_audiotypecvt.c" />
     <ClCompile Include="src\audio\SDL_mixer.c" />
     <ClCompile Include="src\audio\SDL_wave.c" />
+    <ClCompile Include="src\audio\xaudio2\SDL_xaudio2.c" />
     <ClCompile Include="src\core\xbox360\SDL_xbox360.c" />
     <ClCompile Include="src\core\xbox360\SDL_xinput.c" />
     <ClCompile Include="src\cpuinfo\SDL_cpuinfo.c" />
+    <ClCompile Include="src\dynapi\SDL_dynapi.c" />
     <ClCompile Include="src\events\imKStoUCS.c" />
     <ClCompile Include="src\events\SDL_clipboardevents.c" />
     <ClCompile Include="src\events\SDL_displayevents.c" />
@@ -210,7 +260,16 @@
     <ClCompile Include="src\events\SDL_windowevents.c" />
     <ClCompile Include="src\filesystem\xbox360\SDL_sysfilesystem.c" />
     <ClCompile Include="src\file\SDL_rwops.c" />
-    <ClCompile Include="src\joystick\dummy\SDL_sysjoystick.c" />
+    <ClCompile Include="src\joystick\controller_type.c" />
+    <ClCompile Include="src\joystick\SDL_gamecontroller.c" />
+    <ClCompile Include="src\joystick\SDL_joystick.c" />
+    <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad.c" />
+    <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad_dummy.c" />
+    <ClCompile Include="src\joystick\xbox360\SDL_dinputjoystick.c" />
+    <ClCompile Include="src\joystick\xbox360\SDL_rawinputjoystick.c" />
+    <ClCompile Include="src\joystick\xbox360\SDL_windowsjoystick.c" />
+    <ClCompile Include="src\joystick\xbox360\SDL_windows_gaming_input.c" />
+    <ClCompile Include="src\joystick\xbox360\SDL_xinputjoystick.c" />
     <ClCompile Include="src\libm\e_atan2.c" />
     <ClCompile Include="src\libm\e_exp.c" />
     <ClCompile Include="src\libm\e_fmod.c" />
@@ -232,6 +291,10 @@
     <ClCompile Include="src\libm\s_sin.c" />
     <ClCompile Include="src\libm\s_tan.c" />
     <ClCompile Include="src\locale\SDL_locale.c" />
+    <ClCompile Include="src\power\SDL_power.c" />
+    <ClCompile Include="src\render\SDL_d3dmath.c" />
+    <ClCompile Include="src\render\SDL_render.c" />
+    <ClCompile Include="src\render\SDL_yuv_sw.c" />
     <ClCompile Include="src\render\software\SDL_blendfillrect.c" />
     <ClCompile Include="src\render\software\SDL_blendline.c" />
     <ClCompile Include="src\render\software\SDL_blendpoint.c" />
@@ -249,6 +312,7 @@
     <ClCompile Include="src\SDL_list.c" />
     <ClCompile Include="src\SDL_log.c" />
     <ClCompile Include="src\SDL_utils.c" />
+    <ClCompile Include="src\sensor\SDL_sensor.c" />
     <ClCompile Include="src\stdlib\SDL_crc16.c" />
     <ClCompile Include="src\stdlib\SDL_crc32.c" />
     <ClCompile Include="src\stdlib\SDL_getenv.c" />
@@ -260,14 +324,41 @@
     <ClCompile Include="src\stdlib\SDL_string.c" />
     <ClCompile Include="src\stdlib\SDL_strtokr.c" />
     <ClCompile Include="src\thread\generic\SDL_syscond.c" />
-    <ClCompile Include="src\thread\generic\SDL_sysmutex.c" />
-    <ClCompile Include="src\thread\generic\SDL_syssem.c" />
-    <ClCompile Include="src\thread\generic\SDL_systhread.c" />
-    <ClCompile Include="src\thread\generic\SDL_systls.c" />
-    <ClCompile Include="src\timer\dummy\SDL_systimer.c" />
+    <ClCompile Include="src\thread\SDL_thread.c" />
+    <ClCompile Include="src\thread\xbox360\SDL_syscond_cv.c" />
+    <ClCompile Include="src\thread\xbox360\SDL_sysmutex.c" />
+    <ClCompile Include="src\thread\xbox360\SDL_syssem.c" />
+    <ClCompile Include="src\thread\xbox360\SDL_systhread.c" />
+    <ClCompile Include="src\thread\xbox360\SDL_systls.c" />
+    <ClCompile Include="src\timer\SDL_timer.c" />
+    <ClCompile Include="src\timer\xbox360\SDL_systimer.c" />
     <ClCompile Include="src\video\dummy\SDL_nullevents.c" />
     <ClCompile Include="src\video\dummy\SDL_nullframebuffer.c" />
     <ClCompile Include="src\video\dummy\SDL_nullvideo.c" />
+    <ClCompile Include="src\video\SDL_blit.c" />
+    <ClCompile Include="src\video\SDL_blit_0.c" />
+    <ClCompile Include="src\video\SDL_blit_1.c" />
+    <ClCompile Include="src\video\SDL_blit_A.c" />
+    <ClCompile Include="src\video\SDL_blit_auto.c" />
+    <ClCompile Include="src\video\SDL_blit_copy.c" />
+    <ClCompile Include="src\video\SDL_blit_N.c" />
+    <ClCompile Include="src\video\SDL_blit_slow.c" />
+    <ClCompile Include="src\video\SDL_bmp.c" />
+    <ClCompile Include="src\video\SDL_clipboard.c" />
+    <ClCompile Include="src\video\SDL_egl.c" />
+    <ClCompile Include="src\video\SDL_fillrect.c" />
+    <ClCompile Include="src\video\SDL_pixels.c" />
+    <ClCompile Include="src\video\SDL_rect.c" />
+    <ClCompile Include="src\video\SDL_RLEaccel.c" />
+    <ClCompile Include="src\video\SDL_shape.c" />
+    <ClCompile Include="src\video\SDL_stretch.c" />
+    <ClCompile Include="src\video\SDL_surface.c" />
+    <ClCompile Include="src\video\SDL_video.c" />
+    <ClCompile Include="src\video\SDL_vulkan_utils.c" />
+    <ClCompile Include="src\video\SDL_yuv.c" />
+    <ClCompile Include="src\video\yuv2rgb\yuv_rgb_lsx.c" />
+    <ClCompile Include="src\video\yuv2rgb\yuv_rgb_sse.c" />
+    <ClCompile Include="src\video\yuv2rgb\yuv_rgb_std.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{47D6D58A-44F7-4320-881D-6B12D9C6049A}</ProjectGuid>
@@ -292,7 +383,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Xbox 360'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_LTCG|Xbox 360'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -345,19 +436,30 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <ExceptionHandling>false</ExceptionHandling>
+      <ExceptionHandling>Sync</ExceptionHandling>
       <MinimalRebuild>true</MinimalRebuild>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeaderOutputFile>$(OutDir)$(ProjectName).pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PreprocessorDefinitions>_DEBUG;_XBOX;_LIB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_XBOX;_LIB;DLL_IMPORT;__XBOX_360__</PreprocessorDefinitions>
       <CallAttributedProfiling>Callcap</CallAttributedProfiling>
       <AdditionalIncludeDirectories>$(ProjectDir)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
+      <OmitDefaultLibName>true</OmitDefaultLibName>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib />
+    <ProjectReference />
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CodeAnalysis|Xbox 360'">
     <ClCompile>
@@ -436,15 +538,19 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeaderOutputFile>$(OutDir)$(ProjectName).pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PreprocessorDefinitions>NDEBUG;_XBOX;_LIB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_XBOX;_LIB;DLL_IMPORT;</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_LTCG|Xbox 360'">
     <ClCompile>

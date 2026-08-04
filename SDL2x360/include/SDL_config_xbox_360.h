@@ -37,12 +37,20 @@
 
 /* --- Math --- */
 #define HAVE_COS   1
+#define HAVE_COSF   1
 #define HAVE_SIN   1
 #define HAVE_TAN   1
 #define HAVE_ACOS  1
+#define HAVE_ACOSF  1
 #define HAVE_ASIN  1
+#define HAVE_ASINF  1
 #define HAVE_ATAN  1
+#define HAVE_ATANF 1
 #define HAVE_ATAN2 1
+#define HAVE_ATAN2F 1
+#define HAVE_CEIL	1
+#define HAVE_CEILF	1
+#define HAVE_EXP	1
 #define HAVE_FABS  1
 #define HAVE_FLOOR 1
 #define HAVE_FMOD  1
@@ -55,6 +63,8 @@
 #endif
 
 #define HAVE_STDIO_H 1
+#define HAVE_LIMITS_H 1
+#define HAVE_STRING_H 1
 
 /* --- Disable dynamic loading on XDK --- */
 #define SDL_LOADSO_DISABLED 1
@@ -65,30 +75,33 @@
 #define SDL_POWER_DISABLED  1
 
 /* XBOX Video driver */
-#define SDL_VIDEO_DRIVER_XBOX  1
+#define SDL_VIDEO_DRIVER_DUMMY 1
+#define SDL_VIDEO_DRIVER_XBOX_360  1
 
 /* XBOX Timer driver */
-#define SDL_TIMER_XBOX  1
+#define SDL_TIMER_XBOX_360  1
 
 /* === Select SDL backends by the names SDL expects ===
    We are using Windows-family backends that work with XDK’s xtl.h.
    (You already patched SDL_windows.h to include <xtl.h> under _XBOX.) */
-#define SDL_AUDIO_DRIVER_DSOUND     1
-#define SDL_VIDEO_RENDER_D3D        1   /* renderer support flag */
+/* Enable various threading systems */
+#define SDL_THREAD_GENERIC_COND_SUFFIX 1
+#define SDL_AUDIO_DRIVER_XAUDIO2 1
+#define SDL_XAUDIO2_HAS_SDK 1
+//#define SDL_VIDEO_RENDER_D3D        1   /* renderer support flag */
 
 #define SDL_FILESYSTEM_XBOX_360  1
 
-#define SDL_THREAD_XBOX  1
+#define SDL_THREAD_XBOX_360 1
 
 #define SDL_MUTEX_WINDOWS           1
 #define SDL_SEMAPHORE_WINDOWS       1
 #define SDL_TIMER_WINDOWS           1
 
 /* Joystick: keep using your custom driver if you have one, otherwise Windows */
-#ifndef SDL_JOYSTICK_XINPUT
-/* Use the XBOX joystick driver */
-#define SDL_JOYSTICK_XBOX 1
-#endif
+#define SDL_JOYSTICK_XINPUT 1
+#define SDL_STATIC_LIB 1
+
 
 /* Optional assembly (x86) */
 #ifndef _WIN64

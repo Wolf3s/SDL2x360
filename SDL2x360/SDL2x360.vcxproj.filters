@@ -46,9 +46,6 @@
     <Filter Include="src\render">
       <UniqueIdentifier>{d7f76cd2-23e0-4fdf-a216-067e20faac09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\joystick\dummy">
-      <UniqueIdentifier>{fc8e6c08-5f18-4f12-a094-801ad225d379}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\stdlib">
       <UniqueIdentifier>{f4e1ff1d-85b5-4052-8878-365a5195bf0c}</UniqueIdentifier>
     </Filter>
@@ -64,17 +61,35 @@
     <Filter Include="src\timer">
       <UniqueIdentifier>{3bc2a15f-0647-4063-bc48-9c062bd02d6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\timer\dummy">
-      <UniqueIdentifier>{19870924-edc2-4665-961f-7c9c34c0d21f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\audio\dummy">
-      <UniqueIdentifier>{cbb72c2c-74b4-475b-b2be-425845a3fa10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\thread\generic">
-      <UniqueIdentifier>{f549dac4-cc13-4294-8f3d-272b1e863c6e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\render\dummy">
       <UniqueIdentifier>{b023d6d8-e5d6-46dc-a25c-91b85587892b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dynapi">
+      <UniqueIdentifier>{9491601c-ac4a-4b4b-8919-97091668c0c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\power">
+      <UniqueIdentifier>{1d4a75ee-39c2-4068-b763-9b76676754b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sensor">
+      <UniqueIdentifier>{667f0c89-eb33-445c-a31b-af4774778ea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\timer\xbox360">
+      <UniqueIdentifier>{e70071a7-a5bb-4f62-9cce-b913353c46fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread\xbox360">
+      <UniqueIdentifier>{7c84ac6d-ebd7-44c0-9c16-bd335045dd8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread\generic">
+      <UniqueIdentifier>{29f699f2-d612-49c0-9baa-0dccd4640c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\audio\xaudio2">
+      <UniqueIdentifier>{9323aed6-72d8-4d52-a1c3-5f521a6e245b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\video\yuv2rgb">
+      <UniqueIdentifier>{dcb61c4e-e155-4675-8388-ced296429eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\joystick\xbox360">
+      <UniqueIdentifier>{d3fa6172-b767-4fcc-b990-b16b5a9977f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -486,18 +501,6 @@
     <ClInclude Include="src\video\dummy\SDL_nullvideo.h">
       <Filter>src\video\dummy</Filter>
     </ClInclude>
-    <ClInclude Include="src\audio\dummy\SDL_dummyaudio.h">
-      <Filter>src\audio\dummy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\thread\generic\SDL_syscond_c.h">
-      <Filter>src\thread\generic</Filter>
-    </ClInclude>
-    <ClInclude Include="src\thread\generic\SDL_sysmutex_c.h">
-      <Filter>src\thread\generic</Filter>
-    </ClInclude>
-    <ClInclude Include="src\thread\generic\SDL_systhread_c.h">
-      <Filter>src\thread\generic</Filter>
-    </ClInclude>
     <ClInclude Include="src\render\software\SDL_blendfillrect.h">
       <Filter>src\render\dummy</Filter>
     </ClInclude>
@@ -525,6 +528,153 @@
     <ClInclude Include="src\render\software\SDL_triangle.h">
       <Filter>src\render\dummy</Filter>
     </ClInclude>
+    <ClInclude Include="src\dynapi\SDL_dynapi.h">
+      <Filter>src\dynapi</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dynapi\SDL_dynapi_overrides.h">
+      <Filter>src\dynapi</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dynapi\SDL_dynapi_procs.h">
+      <Filter>src\dynapi</Filter>
+    </ClInclude>
+    <ClInclude Include="src\power\SDL_syspower.h">
+      <Filter>src\power</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sensor\SDL_sensor_c.h">
+      <Filter>src\sensor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sensor\SDL_syssensor.h">
+      <Filter>src\sensor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\timer\SDL_timer_c.h">
+      <Filter>src\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\xbox360\SDL_sysmutex_c.h">
+      <Filter>src\thread\xbox360</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\xbox360\SDL_systhread_c.h">
+      <Filter>src\thread\xbox360</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\generic\SDL_syscond_c.h">
+      <Filter>src\thread\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit_auto.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit_copy.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_blit_slow.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_egl_c.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_pixels_c.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_rect_c.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_rect_impl.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_RLEaccel_c.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_shape_internals.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_sysvideo.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_vulkan_internal.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\SDL_yuv_c.h">
+      <Filter>src\video</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\xaudio2\SDL_xaudio2.h">
+      <Filter>src\audio\xaudio2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\SDL_d3dmath.h">
+      <Filter>src\render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\SDL_sysrender.h">
+      <Filter>src\render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render\SDL_yuv_sw_c.h">
+      <Filter>src\render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_common.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_internal.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_lsx.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_lsx_func.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_sse.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_sse_func.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_std.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\video\yuv2rgb\yuv_rgb_std_func.h">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\controller_list.h">
+      <Filter>src\joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\controller_type.h">
+      <Filter>src\joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\SDL_gamecontrollerdb.h">
+      <Filter>src\joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\SDL_joystick_c.h">
+      <Filter>src\joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\SDL_steam_virtual_gamepad.h">
+      <Filter>src\joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\SDL_sysjoystick.h">
+      <Filter>src\joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\usb_ids.h">
+      <Filter>src\joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\SDL_systhread.h">
+      <Filter>src\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread\SDL_thread_c.h">
+      <Filter>src\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\xbox360\SDL_dinputjoystick_c.h">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\xbox360\SDL_rawinputjoystick_c.h">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\xbox360\SDL_windowsjoystick_c.h">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClInclude>
+    <ClInclude Include="src\joystick\xbox360\SDL_xinputjoystick_c.h">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\SDL_config.h.cmake">
@@ -535,6 +685,18 @@
     </None>
     <None Include="include\SDL_revision.h.cmake">
       <Filter>include</Filter>
+    </None>
+    <None Include="src\video\sdlgenblit.pl">
+      <Filter>src\video</Filter>
+    </None>
+    <None Include="src\video\yuv2rgb\LICENSE">
+      <Filter>src\video\yuv2rgb</Filter>
+    </None>
+    <None Include="src\video\yuv2rgb\README.md">
+      <Filter>src\video\yuv2rgb</Filter>
+    </None>
+    <None Include="src\joystick\sort_controllers.py">
+      <Filter>src\joystick</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -706,9 +868,6 @@
     <ClCompile Include="src\locale\SDL_locale.c">
       <Filter>src\locale</Filter>
     </ClCompile>
-    <ClCompile Include="src\joystick\dummy\SDL_sysjoystick.c">
-      <Filter>src\joystick\dummy</Filter>
-    </ClCompile>
     <ClCompile Include="src\stdlib\SDL_crc16.c">
       <Filter>src\stdlib</Filter>
     </ClCompile>
@@ -748,27 +907,6 @@
     <ClCompile Include="src\video\dummy\SDL_nullevents.c">
       <Filter>src\video\dummy</Filter>
     </ClCompile>
-    <ClCompile Include="src\timer\dummy\SDL_systimer.c">
-      <Filter>src\timer\dummy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\audio\dummy\SDL_dummyaudio.c">
-      <Filter>src\audio\dummy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\thread\generic\SDL_syscond.c">
-      <Filter>src\thread\generic</Filter>
-    </ClCompile>
-    <ClCompile Include="src\thread\generic\SDL_sysmutex.c">
-      <Filter>src\thread\generic</Filter>
-    </ClCompile>
-    <ClCompile Include="src\thread\generic\SDL_syssem.c">
-      <Filter>src\thread\generic</Filter>
-    </ClCompile>
-    <ClCompile Include="src\thread\generic\SDL_systhread.c">
-      <Filter>src\thread\generic</Filter>
-    </ClCompile>
-    <ClCompile Include="src\thread\generic\SDL_systls.c">
-      <Filter>src\thread\generic</Filter>
-    </ClCompile>
     <ClCompile Include="src\render\software\SDL_blendfillrect.c">
       <Filter>src\render\dummy</Filter>
     </ClCompile>
@@ -792,6 +930,156 @@
     </ClCompile>
     <ClCompile Include="src\render\software\SDL_triangle.c">
       <Filter>src\render\dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dynapi\SDL_dynapi.c">
+      <Filter>src\dynapi</Filter>
+    </ClCompile>
+    <ClCompile Include="src\power\SDL_power.c">
+      <Filter>src\power</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor\SDL_sensor.c">
+      <Filter>src\sensor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer\SDL_timer.c">
+      <Filter>src\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer\xbox360\SDL_systimer.c">
+      <Filter>src\timer\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\xbox360\SDL_syscond_cv.c">
+      <Filter>src\thread\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\xbox360\SDL_sysmutex.c">
+      <Filter>src\thread\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\xbox360\SDL_syssem.c">
+      <Filter>src\thread\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\xbox360\SDL_systhread.c">
+      <Filter>src\thread\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\xbox360\SDL_systls.c">
+      <Filter>src\thread\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\generic\SDL_syscond.c">
+      <Filter>src\thread\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_0.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_1.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_A.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_auto.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_copy.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_N.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_blit_slow.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_bmp.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_clipboard.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_egl.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_fillrect.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_pixels.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_rect.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_RLEaccel.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_shape.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_stretch.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_surface.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_video.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_vulkan_utils.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\SDL_yuv.c">
+      <Filter>src\video</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\xaudio2\SDL_xaudio2.c">
+      <Filter>src\audio\xaudio2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\SDL_d3dmath.c">
+      <Filter>src\render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\SDL_render.c">
+      <Filter>src\render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\SDL_yuv_sw.c">
+      <Filter>src\render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\yuv2rgb\yuv_rgb_lsx.c">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\yuv2rgb\yuv_rgb_sse.c">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\video\yuv2rgb\yuv_rgb_std.c">
+      <Filter>src\video\yuv2rgb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\controller_type.c">
+      <Filter>src\joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\SDL_gamecontroller.c">
+      <Filter>src\joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\SDL_joystick.c">
+      <Filter>src\joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad.c">
+      <Filter>src\joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad_dummy.c">
+      <Filter>src\joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread\SDL_thread.c">
+      <Filter>src\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\xbox360\SDL_dinputjoystick.c">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\xbox360\SDL_rawinputjoystick.c">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\xbox360\SDL_windows_gaming_input.c">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\xbox360\SDL_windowsjoystick.c">
+      <Filter>src\joystick\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joystick\xbox360\SDL_xinputjoystick.c">
+      <Filter>src\joystick\xbox360</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
