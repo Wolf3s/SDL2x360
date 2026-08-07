@@ -32,7 +32,7 @@
 #include "SDL_syswm.h"
 #include "../SDL_sysrender.h"
 #include "../SDL_d3dmath.h"
-#include "../../video/windows/SDL_windowsvideo.h"
+#include "../../video/xbox360/SDL_xbox360video.h"
 
 #if SDL_VIDEO_RENDER_D3D
 #define D3D_DEBUG_INFO
@@ -229,43 +229,45 @@ static void D3D_InitRenderState(D3D_RenderData *data)
     IDirect3DDevice9_SetVertexShader(device, NULL);
     IDirect3DDevice9_SetRenderState(device, D3DRS_ZENABLE, D3DZB_FALSE);
     IDirect3DDevice9_SetRenderState(device, D3DRS_CULLMODE, D3DCULL_NONE);
-    IDirect3DDevice9_SetRenderState(device, D3DRS_LIGHTING, FALSE);
+/*    IDirect3DDevice9_SetRenderState(device, D3DRS_LIGHTING, FALSE); */
 
     /* Enable color modulation by diffuse color */
+/*
     IDirect3DDevice9_SetTextureStageState(device, 0, D3DTSS_COLOROP,
                                           D3DTOP_MODULATE);
     IDirect3DDevice9_SetTextureStageState(device, 0, D3DTSS_COLORARG1,
                                           D3DTA_TEXTURE);
     IDirect3DDevice9_SetTextureStageState(device, 0, D3DTSS_COLORARG2,
                                           D3DTA_DIFFUSE);
-
+*/
     /* Enable alpha modulation by diffuse alpha */
+/*
     IDirect3DDevice9_SetTextureStageState(device, 0, D3DTSS_ALPHAOP,
                                           D3DTOP_MODULATE);
     IDirect3DDevice9_SetTextureStageState(device, 0, D3DTSS_ALPHAARG1,
                                           D3DTA_TEXTURE);
     IDirect3DDevice9_SetTextureStageState(device, 0, D3DTSS_ALPHAARG2,
                                           D3DTA_DIFFUSE);
-
+										  */
     /* Enable separate alpha blend function, if possible */
     if (data->enableSeparateAlphaBlend) {
         IDirect3DDevice9_SetRenderState(device, D3DRS_SEPARATEALPHABLENDENABLE, TRUE);
     }
 
     /* Disable second texture stage, since we're done */
-    IDirect3DDevice9_SetTextureStageState(device, 1, D3DTSS_COLOROP,
+/*    IDirect3DDevice9_SetTextureStageState(device, 1, D3DTSS_COLOROP,
                                           D3DTOP_DISABLE);
     IDirect3DDevice9_SetTextureStageState(device, 1, D3DTSS_ALPHAOP,
                                           D3DTOP_DISABLE);
-
+*/
     /* Set an identity world and view matrix */
     SDL_zero(matrix);
     matrix.m[0][0] = 1.0f;
     matrix.m[1][1] = 1.0f;
     matrix.m[2][2] = 1.0f;
     matrix.m[3][3] = 1.0f;
-    IDirect3DDevice9_SetTransform(device, D3DTS_WORLD, &matrix);
-    IDirect3DDevice9_SetTransform(device, D3DTS_VIEW, &matrix);
+/*    IDirect3DDevice9_SetTransform(device, D3DTS_WORLD, &matrix);
+    IDirect3DDevice9_SetTransform(device, D3DTS_VIEW, &matrix);*/
 
     /* Reset our current scale mode */
     SDL_memset(data->scaleMode, 0xFF, sizeof(data->scaleMode));
@@ -450,10 +452,12 @@ static int D3D_RecreateTextureRep(IDirect3DDevice9 *device, D3D_TextureRep *text
         IDirect3DTexture9_Release(texture->texture);
         texture->texture = NULL;
     }
+/*
     if (texture->staging) {
         IDirect3DTexture9_AddDirtyRect(texture->staging, NULL);
         texture->dirty = SDL_TRUE;
     }
+*/
     return 0;
 }
 
@@ -770,11 +774,12 @@ static int D3D_SetRenderTargetInternal(SDL_Renderer *renderer, SDL_Texture *text
                 return D3D_SetError("CreateTexture(D3DPOOL_DEFAULT)", result);
             }
         }
-
+/*
         result = IDirect3DDevice9_UpdateTexture(device, (IDirect3DBaseTexture9 *)texturerep->staging, (IDirect3DBaseTexture9 *)texturerep->texture);
         if (FAILED(result)) {
             return D3D_SetError("UpdateTexture()", result);
         }
+*/
         texturerep->dirty = SDL_FALSE;
     }
 
@@ -890,11 +895,12 @@ static int UpdateDirtyTexture(IDirect3DDevice9 *device, D3D_TextureRep *texture)
                 return D3D_SetError("CreateTexture(D3DPOOL_DEFAULT)", result);
             }
         }
-
-        result = IDirect3DDevice9_UpdateTexture(device, (IDirect3DBaseTexture9 *)texture->staging, (IDirect3DBaseTexture9 *)texture->texture);
+/*
+		result = IDirect3DDevice9_UpdateTexture(device, (IDirect3DBaseTexture9 *)texture->staging, (IDirect3DBaseTexture9 *)texture->texture);
         if (FAILED(result)) {
             return D3D_SetError("UpdateTexture()", result);
         }
+*/
         texture->dirty = SDL_FALSE;
     }
     return 0;
@@ -1053,7 +1059,8 @@ static int SetDrawState(D3D_RenderData *data, const SDL_RenderCommand *cmd)
         IDirect3DDevice9_SetViewport(data->device, &d3dviewport);
 
         /* Set an orthographic projection matrix */
-        if (viewport->w && viewport->h) {
+/*
+		if (viewport->w && viewport->h) {
             D3DMATRIX d3dmatrix;
             SDL_zero(d3dmatrix);
             d3dmatrix.m[0][0] = 2.0f / viewport->w;
@@ -1064,7 +1071,7 @@ static int SetDrawState(D3D_RenderData *data, const SDL_RenderCommand *cmd)
             d3dmatrix.m[3][3] = 1.0f;
             IDirect3DDevice9_SetTransform(data->device, D3DTS_PROJECTION, &d3dmatrix);
         }
-
+*/
         data->drawstate.viewport_dirty = SDL_FALSE;
     }
 
@@ -1115,7 +1122,7 @@ static int D3D_RunCommandQueue(SDL_Renderer *renderer, SDL_RenderCommand *cmd, v
             data->vertexBuffers[vboidx] = vbo;
             data->vertexBufferSize[vboidx] = vbo ? vertsize : 0;
         }
-
+#ifdef WIP
         if (vbo) {
             void *ptr;
             if (FAILED(IDirect3DVertexBuffer9_Lock(vbo, 0, (UINT)vertsize, &ptr, D3DLOCK_DISCARD))) {
@@ -1127,7 +1134,7 @@ static int D3D_RunCommandQueue(SDL_Renderer *renderer, SDL_RenderCommand *cmd, v
                 }
             }
         }
-
+#endif
         /* cycle through a few VBOs so D3D has some time with the data before we replace it. */
         if (vbo) {
             data->currentVertexBuffer++;
@@ -1306,7 +1313,7 @@ static int D3D_RenderReadPixels(SDL_Renderer *renderer, const SDL_Rect *rect,
     if (FAILED(result)) {
         return D3D_SetError("GetDesc()", result);
     }
-
+/*
     result = IDirect3DDevice9_CreateOffscreenPlainSurface(data->device, desc.Width, desc.Height, desc.Format, D3DPOOL_SYSTEMMEM, &surface, NULL);
     if (FAILED(result)) {
         return D3D_SetError("CreateOffscreenPlainSurface()", result);
@@ -1317,7 +1324,7 @@ static int D3D_RenderReadPixels(SDL_Renderer *renderer, const SDL_Rect *rect,
         IDirect3DSurface9_Release(surface);
         return D3D_SetError("GetRenderTargetData()", result);
     }
-
+*/
     d3drect.left = rect->x;
     d3drect.right = (LONG)rect->x + rect->w;
     d3drect.top = rect->y;
@@ -1348,12 +1355,6 @@ static int D3D_RenderPresent(SDL_Renderer *renderer)
     if (!data->beginScene) {
         IDirect3DDevice9_EndScene(data->device);
         data->beginScene = SDL_TRUE;
-    }
-
-    result = IDirect3DDevice9_TestCooperativeLevel(data->device);
-    if (result == D3DERR_DEVICELOST) {
-        /* We'll reset later */
-        return -1;
     }
     if (result == D3DERR_DEVICENOTRESET) {
         D3D_Reset(renderer);
@@ -1508,7 +1509,7 @@ static int D3D_Reset(SDL_Renderer *renderer)
     data->drawstate.texture = NULL;
     data->drawstate.shader = NULL;
     data->drawstate.blend = SDL_BLENDMODE_INVALID;
-    IDirect3DDevice9_SetTransform(data->device, D3DTS_VIEW, (D3DMATRIX *)&d3dmatrix);
+/*    IDirect3DDevice9_SetTransform(data->device, D3DTS_VIEW, (D3DMATRIX *)&d3dmatrix); */
 
     /* Let the application know that render targets were reset */
     {
@@ -1543,7 +1544,6 @@ int D3D_CreateRenderer(SDL_Renderer *renderer, SDL_Window *window, Uint32 flags)
     SDL_SysWMinfo windowinfo;
     HRESULT result;
     D3DPRESENT_PARAMETERS pparams;
-    IDirect3DSwapChain9 *chain;
     D3DCAPS9 caps;
     DWORD device_flags;
     Uint32 window_flags;
@@ -1556,7 +1556,7 @@ int D3D_CreateRenderer(SDL_Renderer *renderer, SDL_Window *window, Uint32 flags)
         return SDL_OutOfMemory();
     }
 
-    if (!D3D_LoadDLL(&data->d3dDLL, &data->d3d)) {
+    if (!D3D_LoadDLL(&data->d3d)) {
         SDL_free(data);
         return SDL_SetError("Unable to create Direct3D interface");
     }
@@ -1600,7 +1600,7 @@ int D3D_CreateRenderer(SDL_Renderer *renderer, SDL_Window *window, Uint32 flags)
     SDL_GetWindowDisplayMode(window, &fullscreen_mode);
 
     SDL_zero(pparams);
-    pparams.hDeviceWindow = windowinfo.info.win.window;
+    /* pparams.hDeviceWindow = windowinfo.info.win.window; */
     pparams.BackBufferWidth = w;
     pparams.BackBufferHeight = h;
     pparams.BackBufferCount = 1;
@@ -1623,7 +1623,6 @@ int D3D_CreateRenderer(SDL_Renderer *renderer, SDL_Window *window, Uint32 flags)
 
     /* Get the adapter for the display that the window is on */
     displayIndex = SDL_GetWindowDisplayIndex(window);
-    data->adapter = SDL_Direct3D9GetAdapterIndex(displayIndex);
 
     IDirect3D9_GetDeviceCaps(data->d3d, data->adapter, D3DDEVTYPE_HAL, &caps);
 
@@ -1641,25 +1640,7 @@ int D3D_CreateRenderer(SDL_Renderer *renderer, SDL_Window *window, Uint32 flags)
         D3D_DestroyRenderer(renderer);
         return D3D_SetError("CreateDevice()", result);
     }
-
-    /* Get presentation parameters to fill info */
-    result = IDirect3DDevice9_GetSwapChain(data->device, 0, &chain);
-    if (FAILED(result)) {
-        D3D_DestroyRenderer(renderer);
-        return D3D_SetError("GetSwapChain()", result);
-    }
-    result = IDirect3DSwapChain9_GetPresentParameters(chain, &pparams);
-    if (FAILED(result)) {
-        IDirect3DSwapChain9_Release(chain);
-        D3D_DestroyRenderer(renderer);
-        return D3D_SetError("GetPresentParameters()", result);
-    }
-    IDirect3DSwapChain9_Release(chain);
-    if (pparams.PresentationInterval == D3DPRESENT_INTERVAL_ONE) {
-        renderer->info.flags |= SDL_RENDERER_PRESENTVSYNC;
-    }
-    data->pparams = pparams;
-
+  
     IDirect3DDevice9_GetDeviceCaps(data->device, &caps);
     renderer->info.max_texture_width = caps.MaxTextureWidth;
     renderer->info.max_texture_height = caps.MaxTextureHeight;

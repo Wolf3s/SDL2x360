@@ -75,7 +75,6 @@
 #define SDL_POWER_DISABLED  1
 
 /* XBOX Video driver */
-#define SDL_VIDEO_DRIVER_DUMMY 1
 #define SDL_VIDEO_DRIVER_XBOX_360  1
 
 /* XBOX Timer driver */
@@ -88,7 +87,7 @@
 #define SDL_THREAD_GENERIC_COND_SUFFIX 1
 #define SDL_AUDIO_DRIVER_XAUDIO2 1
 #define SDL_XAUDIO2_HAS_SDK 1
-//#define SDL_VIDEO_RENDER_D3D        1   /* renderer support flag */
+#define SDL_VIDEO_RENDER_D3D        1   /* renderer support flag */
 
 #define SDL_FILESYSTEM_XBOX_360  1
 

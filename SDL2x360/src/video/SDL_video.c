@@ -93,6 +93,9 @@ static VideoBootStrap *bootstrap[] = {
 #ifdef SDL_VIDEO_DRIVER_XBOX
 	&XBOX_bootstrap,
 #endif
+#ifdef SDL_VIDEO_DRIVER_XBOX_360
+	&XBOX_360_bootstrap,
+#endif
 #ifdef SDL_VIDEO_DRIVER_WINRT
     &WINRT_bootstrap,
 #endif
