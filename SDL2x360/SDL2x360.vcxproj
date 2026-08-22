@@ -265,7 +265,6 @@
     <ClCompile Include="src\joystick\SDL_gamecontroller.c" />
     <ClCompile Include="src\joystick\SDL_joystick.c" />
     <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad.c" />
-    <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad_dummy.c" />
     <ClCompile Include="src\joystick\xbox360\SDL_dinputjoystick.c" />
     <ClCompile Include="src\joystick\xbox360\SDL_rawinputjoystick.c" />
     <ClCompile Include="src\joystick\xbox360\SDL_windowsjoystick.c" />

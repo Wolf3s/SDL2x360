@@ -257,11 +257,7 @@ static SDL_sem *SDL_CreateSemaphore_kern(Uint32 initial_value)
     sem = (SDL_sem_kern *)SDL_malloc(sizeof(*sem));
     if (sem) {
         /* Create the semaphore, with max value 32K */
-#ifdef __WINRT__
-        sem->id = CreateSemaphoreEx(NULL, initial_value, 32 * 1024, NULL, 0, SEMAPHORE_ALL_ACCESS);
-#else
         sem->id = CreateSemaphore(NULL, initial_value, 32 * 1024, NULL);
-#endif
         sem->count = initial_value;
         if (!sem->id) {
             SDL_SetError("Couldn't create semaphore");
@@ -379,27 +375,8 @@ SDL_sem *SDL_CreateSemaphore(Uint32 initial_value)
 
 #if !SDL_WINAPI_FAMILY_PHONE
         if (!SDL_GetHintBoolean(SDL_HINT_WINDOWS_FORCE_SEMAPHORE_KERNEL, SDL_FALSE)) {
-#ifdef __WINRT__
             /* Link statically on this platform */
             impl = &SDL_sem_impl_atom;
-#else
-            /* We already statically link to features from this Api
-             * Set (e.g. WaitForSingleObject). Dynamically loading
-             * API Sets is not explicitly documented but according to
-             * Microsoft our specific use case is legal and correct:
-             * https://github.com/microsoft/STL/pull/593#issuecomment-655799859
-             */
-            HMODULE synch120 = GetModuleHandle(TEXT("api-ms-win-core-synch-l1-2-0.dll"));
-            if (synch120) {
-                /* Try to load required functions provided by Win 8 or newer */
-                pWaitOnAddress = (pfnWaitOnAddress)GetProcAddress(synch120, "WaitOnAddress");
-                pWakeByAddressSingle = (pfnWakeByAddressSingle)GetProcAddress(synch120, "WakeByAddressSingle");
-
-                if (pWaitOnAddress && pWakeByAddressSingle) {
-                    impl = &SDL_sem_impl_atom;
-                }
-            }
-#endif
         }
 #endif
 
@@ -439,6 +416,6 @@ int SDL_SemPost(SDL_sem *sem)
     return SDL_sem_impl_active.Post(sem);
 }
 
-#endif /* SDL_THREAD_WINDOWS */
+#endif /* SDL_THREAD_XBOX_360 */
 
 /* vi: set ts=4 sw=4 expandtab: */

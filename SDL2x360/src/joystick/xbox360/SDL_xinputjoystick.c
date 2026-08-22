@@ -67,7 +67,7 @@ int SDL_XINPUT_JoystickInit(void)
 {
     SDL_bool enabled = SDL_GetHintBoolean(SDL_HINT_XINPUT_ENABLED, SDL_TRUE);
 
-    if (enabled && WIN_LoadXInputDLL() < 0) {
+    if (enabled && XBOX_360_LoadXInputDLL() < 0) {
         enabled = SDL_FALSE; /* oh well. */
     }
     s_bXInputEnabled = enabled;
@@ -456,7 +456,7 @@ void SDL_XINPUT_JoystickQuit(void)
 {
     if (s_bXInputEnabled) {
         s_bXInputEnabled = SDL_FALSE;
-        WIN_UnloadXInputDLL();
+        XBOX_360_UnloadXInputDLL();
     }
 }
 

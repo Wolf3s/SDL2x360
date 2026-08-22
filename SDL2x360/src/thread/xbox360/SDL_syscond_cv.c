@@ -235,24 +235,8 @@ SDL_cond *SDL_CreateCond(void)
             SDL_assert(SDL_mutex_impl_active.Type != SDL_MUTEX_INVALID);
         }
 
-#ifdef __WINRT__
         /* Link statically on this platform */
         impl = &SDL_cond_impl_cv;
-#else
-        {
-            HMODULE kernel32 = GetModuleHandle(TEXT("kernel32.dll"));
-            if (kernel32) {
-                pWakeConditionVariable = (pfnWakeConditionVariable)GetProcAddress(kernel32, "WakeConditionVariable");
-                pWakeAllConditionVariable = (pfnWakeAllConditionVariable)GetProcAddress(kernel32, "WakeAllConditionVariable");
-                pSleepConditionVariableSRW = (pfnSleepConditionVariableSRW)GetProcAddress(kernel32, "SleepConditionVariableSRW");
-                pSleepConditionVariableCS = (pfnSleepConditionVariableCS)GetProcAddress(kernel32, "SleepConditionVariableCS");
-                if (pWakeConditionVariable && pWakeAllConditionVariable && pSleepConditionVariableSRW && pSleepConditionVariableCS) {
-                    /* Use the Windows provided API */
-                    impl = &SDL_cond_impl_cv;
-                }
-            }
-        }
-#endif
 
         SDL_copyp(&SDL_cond_impl_active, impl);
     }

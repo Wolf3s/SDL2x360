@@ -32,20 +32,20 @@ typedef enum RO_INIT_TYPE
 
 
 /* Sets an error message based on an HRESULT */
-int WIN_SetErrorFromHRESULT(const char *prefix, HRESULT hr)
+int XBOX_360_SetErrorFromHRESULT(const char *prefix, HRESULT hr)
 {
 	/* TODO */
     return -1;
 }
 
 /* Sets an error message based on GetLastError() */
-int WIN_SetError(const char *prefix)
+int XBOX_360_SetError(const char *prefix)
 {
-    return WIN_SetErrorFromHRESULT(prefix, GetLastError());
+    return XBOX_360_SetErrorFromHRESULT(prefix, GetLastError());
 }
 
 HRESULT
-WIN_CoInitialize(void)
+XBOX_360_CoInitialize(void)
 {
     /* SDL handles any threading model, so initialize with the default, which
        is compatible with OLE and if that doesn't work, try multi-threaded mode.
@@ -57,32 +57,32 @@ WIN_CoInitialize(void)
     return S_OK;
 }
 
-void WIN_CoUninitialize(void)
+void XBOX_360_CoUninitialize(void)
 {
 }
 
 HRESULT
-WIN_RoInitialize(void)
+XBOX_360_RoInitialize(void)
 {
     return S_OK;
 }
 
-void WIN_RoUninitialize(void)
+void XBOX_360_RoUninitialize(void)
 {
 
 }
 
-BOOL WIN_IsWindowsVistaOrGreater(void)
-{
-    return TRUE;
-}
-
-BOOL WIN_IsWindows7OrGreater(void)
+BOOL XBOX_360_IsWindowsVistaOrGreater(void)
 {
     return TRUE;
 }
 
-BOOL WIN_IsWindows8OrGreater(void)
+BOOL XBOX_360_IsWindows7OrGreater(void)
+{
+    return TRUE;
+}
+
+BOOL XBOX_360_IsWindows8OrGreater(void)
 {
     return TRUE;
 }
@@ -108,22 +108,22 @@ has the same problem.)
 
 WASAPI doesn't need this. This is just for DirectSound/WinMM.
 */
-char *WIN_LookupAudioDeviceName(const WCHAR *name, const GUID *guid)
+char *XBOX_360_LookupAudioDeviceName(const WCHAR *name, const GUID *guid)
 {
-    return WIN_StringToUTF8W(name); /* No registry access on WinRT/UWP and Xbox, go with what we've got. */
+    return XBOX_360_StringToUTF8W(name); /* No registry access on WinRT/UWP and Xbox, go with what we've got. */
 }
 
-BOOL WIN_IsEqualGUID(const GUID *a, const GUID *b)
-{
-    return SDL_memcmp(a, b, sizeof(*a)) == 0;
-}
-
-BOOL WIN_IsEqualIID(REFIID a, REFIID b)
+BOOL XBOX_360_IsEqualGUID(const GUID *a, const GUID *b)
 {
     return SDL_memcmp(a, b, sizeof(*a)) == 0;
 }
 
-void WIN_RECTToRect(const RECT *winrect, SDL_Rect *sdlrect)
+BOOL XBOX_360_IsEqualIID(REFIID a, REFIID b)
+{
+    return SDL_memcmp(a, b, sizeof(*a)) == 0;
+}
+
+void XBOX_360_RECTToRect(const RECT *winrect, SDL_Rect *sdlrect)
 {
     sdlrect->x = winrect->left;
     sdlrect->w = (winrect->right - winrect->left) + 1;
@@ -131,7 +131,7 @@ void WIN_RECTToRect(const RECT *winrect, SDL_Rect *sdlrect)
     sdlrect->h = (winrect->bottom - winrect->top) + 1;
 }
 
-void WIN_RectToRECT(const SDL_Rect *sdlrect, RECT *winrect)
+void XBOX_360_RectToRECT(const SDL_Rect *sdlrect, RECT *winrect)
 {
     winrect->left = sdlrect->x;
     winrect->right = sdlrect->x + sdlrect->w - 1;
@@ -139,9 +139,9 @@ void WIN_RectToRECT(const SDL_Rect *sdlrect, RECT *winrect)
     winrect->bottom = sdlrect->y + sdlrect->h - 1;
 }
 
-BOOL WIN_IsRectEmpty(const RECT *rect)
+BOOL XBOX_360_IsRectEmpty(const RECT *rect)
 {
-    /* Calculating this manually because UWP and Xbox do not support Win32 IsRectEmpty. */
+    /* Calculating this manually because UWP and Xbox do not support XBOX_360 IsRectEmpty. */
     return (rect->right <= rect->left) || (rect->bottom <= rect->top);
 }
 

@@ -205,8 +205,8 @@ typedef DWORD(WINAPI *XInputGetCapabilitiesEx_t)(
     BYTE devType,
     XINPUT_BATTERY_INFORMATION_EX *pBatteryInformation);
 */
-extern int WIN_LoadXInputDLL(void);
-extern void WIN_UnloadXInputDLL(void);
+extern int XBOX_360_LoadXInputDLL(void);
+extern void XBOX_360_UnloadXInputDLL(void);
 
 extern XInputGetState_t SDL_XInputGetState;
 extern XInputSetState_t SDL_XInputSetState;

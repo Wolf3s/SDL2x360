@@ -155,12 +155,7 @@ static SDL_mutex *SDL_CreateMutex_cs(void)
     mutex = (SDL_mutex_cs *)SDL_malloc(sizeof(*mutex));
     if (mutex) {
         /* Initialize */
-        /* On SMP systems, a non-zero spin count generally helps performance */
-#ifdef __WINRT__
-        InitializeCriticalSectionEx(&mutex->cs, 2000, 0);
-#else
         InitializeCriticalSectionAndSpinCount(&mutex->cs, 2000);
-#endif
     } else {
         SDL_OutOfMemory();
     }
@@ -226,23 +221,8 @@ SDL_mutex *SDL_CreateMutex(void)
         const SDL_mutex_impl_t *impl = &SDL_mutex_impl_cs;
 
         if (!SDL_GetHintBoolean(SDL_HINT_WINDOWS_FORCE_MUTEX_CRITICAL_SECTIONS, SDL_FALSE)) {
-#ifdef __WINRT__
             /* Link statically on this platform */
             impl = &SDL_mutex_impl_srw;
-#else
-            /* Try faster implementation for Windows 7 and newer */
-            HMODULE kernel32 = GetModuleHandle(TEXT("kernel32.dll"));
-            if (kernel32) {
-                /* Requires Vista: */
-                pReleaseSRWLockExclusive = (pfnReleaseSRWLockExclusive)GetProcAddress(kernel32, "ReleaseSRWLockExclusive");
-                pAcquireSRWLockExclusive = (pfnAcquireSRWLockExclusive)GetProcAddress(kernel32, "AcquireSRWLockExclusive");
-                /* Requires 7: */
-                pTryAcquireSRWLockExclusive = (pfnTryAcquireSRWLockExclusive)GetProcAddress(kernel32, "TryAcquireSRWLockExclusive");
-                if (pReleaseSRWLockExclusive && pAcquireSRWLockExclusive && pTryAcquireSRWLockExclusive) {
-                    impl = &SDL_mutex_impl_srw;
-                }
-            }
-#endif
         }
 
         /* Copy instead of using pointer to save one level of indirection */
@@ -285,6 +265,6 @@ int SDL_UnlockMutex(SDL_mutex *mutex)
     return SDL_mutex_impl_active.Unlock(mutex);
 }
 
-#endif /* SDL_THREAD_WINDOWS */
+#endif /* SDL_THREAD_XBOX_360 */
 
 /* vi: set ts=4 sw=4 expandtab: */

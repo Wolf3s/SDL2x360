@@ -57,19 +57,19 @@
 #include "SDL_rect.h"
 
 /* Routines to convert from UTF8 to native Windows text */
-#define WIN_StringToUTF8W(S) SDL_iconv_string("UTF-8", "UTF-16LE", (const char *)(S), (SDL_wcslen(S) + 1) * sizeof(WCHAR))
-#define WIN_UTF8ToStringW(S) (WCHAR *)SDL_iconv_string("UTF-16LE", "UTF-8", (const char *)(S), SDL_strlen(S) + 1)
+#define XBOX_360_StringToUTF8W(S) SDL_iconv_string("UTF-8", "UTF-16LE", (const char *)(S), (SDL_wcslen(S) + 1) * sizeof(WCHAR))
+#define XBOX_360_UTF8ToStringW(S) (WCHAR *)SDL_iconv_string("UTF-16LE", "UTF-8", (const char *)(S), SDL_strlen(S) + 1)
 /* !!! FIXME: UTF8ToString() can just be a SDL_strdup() here. */
-#define WIN_StringToUTF8A(S) SDL_iconv_string("UTF-8", "ASCII", (const char *)(S), (SDL_strlen(S) + 1))
-#define WIN_UTF8ToStringA(S) SDL_iconv_string("ASCII", "UTF-8", (const char *)(S), SDL_strlen(S) + 1)
+#define XBOX_360_StringToUTF8A(S) SDL_iconv_string("UTF-8", "ASCII", (const char *)(S), (SDL_strlen(S) + 1))
+#define XBOX_360_UTF8ToStringA(S) SDL_iconv_string("ASCII", "UTF-8", (const char *)(S), SDL_strlen(S) + 1)
 #if UNICODE
-#define WIN_StringToUTF8 WIN_StringToUTF8W
-#define WIN_UTF8ToString WIN_UTF8ToStringW
+#define XBOX_360_StringToUTF8 XBOX_360_StringToUTF8W
+#define XBOX_360_UTF8ToString XBOX_360_UTF8ToStringW
 #define SDL_tcslen       SDL_wcslen
 #define SDL_tcsstr       SDL_wcsstr
 #else
-#define WIN_StringToUTF8 WIN_StringToUTF8A
-#define WIN_UTF8ToString WIN_UTF8ToStringA
+#define XBOX_360_StringToUTF8 XBOX_360_StringToUTF8A
+#define XBOX_360_UTF8ToString XBOX_360_UTF8ToStringA
 #define SDL_tcslen       SDL_strlen
 #define SDL_tcsstr       SDL_strstr
 #endif
@@ -80,41 +80,41 @@ extern "C" {
 #endif
 
 /* Sets an error message based on a given HRESULT */
-extern int WIN_SetErrorFromHRESULT(const char *prefix, HRESULT hr);
+extern int XBOX_360_SetErrorFromHRESULT(const char *prefix, HRESULT hr);
 
 /* Sets an error message based on GetLastError(). Always return -1. */
-extern int WIN_SetError(const char *prefix);
+extern int XBOX_360_SetError(const char *prefix);
 
 /* Wrap up the oddities of CoInitialize() into a common function. */
-extern HRESULT WIN_CoInitialize(void);
-extern void WIN_CoUninitialize(void);
+extern HRESULT XBOX_360_CoInitialize(void);
+extern void XBOX_360_CoUninitialize(void);
 
 /* Wrap up the oddities of RoInitialize() into a common function. */
-extern HRESULT WIN_RoInitialize(void);
-extern void WIN_RoUninitialize(void);
+extern HRESULT XBOX_360_RoInitialize(void);
+extern void XBOX_360_RoUninitialize(void);
 
 /* Returns SDL_TRUE if we're running on Windows Vista and newer */
-extern BOOL WIN_IsWindowsVistaOrGreater(void);
+extern BOOL XBOX_360_IsWindowsVistaOrGreater(void);
 
 /* Returns SDL_TRUE if we're running on Windows 7 and newer */
-extern BOOL WIN_IsWindows7OrGreater(void);
+extern BOOL XBOX_360_IsWindows7OrGreater(void);
 
 /* Returns SDL_TRUE if we're running on Windows 8 and newer */
-extern BOOL WIN_IsWindows8OrGreater(void);
+extern BOOL XBOX_360_IsWindows8OrGreater(void);
 
 /* You need to SDL_free() the result of this call. */
-extern char *WIN_LookupAudioDeviceName(const WCHAR *name, const GUID *guid);
+extern char *XBOX_360_LookupAudioDeviceName(const WCHAR *name, const GUID *guid);
 
 /* Checks to see if two GUID are the same. */
-extern BOOL WIN_IsEqualGUID(const GUID *a, const GUID *b);
-extern BOOL WIN_IsEqualIID(REFIID a, REFIID b);
+extern BOOL XBOX_360_IsEqualGUID(const GUID *a, const GUID *b);
+extern BOOL XBOX_360_IsEqualIID(REFIID a, REFIID b);
 
 /* Convert between SDL_rect and RECT */
-extern void WIN_RECTToRect(const RECT *winrect, SDL_Rect *sdlrect);
-extern void WIN_RectToRECT(const SDL_Rect *sdlrect, RECT *winrect);
+extern void XBOX_360_RECTToRect(const RECT *winrect, SDL_Rect *sdlrect);
+extern void XBOX_360_RectToRECT(const SDL_Rect *sdlrect, RECT *winrect);
 
 /* Returns SDL_TRUE if the rect is empty */
-extern BOOL WIN_IsRectEmpty(const RECT *rect);
+extern BOOL XBOX_360_IsRectEmpty(const RECT *rect);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

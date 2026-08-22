@@ -1033,9 +1033,6 @@
     <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad.c">
       <Filter>src\joystick</Filter>
     </ClCompile>
-    <ClCompile Include="src\joystick\SDL_steam_virtual_gamepad_dummy.c">
-      <Filter>src\joystick</Filter>
-    </ClCompile>
     <ClCompile Include="src\thread\SDL_thread.c">
       <Filter>src\thread</Filter>
     </ClCompile>

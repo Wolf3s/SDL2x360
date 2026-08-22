@@ -140,7 +140,7 @@ int SDL_SYS_SetThreadPriority(SDL_ThreadPriority priority)
         value = THREAD_PRIORITY_NORMAL;
     }
     if (!SetThreadPriority(GetCurrentThread(), value)) {
-        return WIN_SetError("SetThreadPriority()");
+        return XBOX_360_SetError("SetThreadPriority()");
     }
     return 0;
 }
@@ -156,6 +156,6 @@ void SDL_SYS_DetachThread(SDL_Thread *thread)
     CloseHandle(thread->handle);
 }
 
-#endif /* SDL_THREAD_WINDOWS */
+#endif /* SDL_THREAD_XBOX_360 */
 
 /* vi: set ts=4 sw=4 expandtab: */

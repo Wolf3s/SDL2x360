@@ -37,7 +37,7 @@ DWORD SDL_XInputVersion = 0;
 static HMODULE s_pXInputDLL = NULL;
 static int s_XInputDLLRefCount = 0;
 
-int WIN_LoadXInputDLL(void)
+int XBOX_360_LoadXInputDLL(void)
 {
     /* Getting handles to system dlls (via LoadLibrary and its variants) is not
      * supported on WinRT, thus, pointers to XInput's functions can't be
@@ -62,7 +62,7 @@ int WIN_LoadXInputDLL(void)
     return 0;
 }
 
-void WIN_UnloadXInputDLL(void)
+void XBOX_360_UnloadXInputDLL(void)
 {
 }
 

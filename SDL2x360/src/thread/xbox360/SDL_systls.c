@@ -28,18 +28,6 @@
 #include "SDL_thread.h"
 #include "../SDL_thread_c.h"
 
-#if WINAPI_FAMILY_WINRT
-#include <fibersapi.h>
-
-#ifndef TLS_OUT_OF_INDEXES
-#define TLS_OUT_OF_INDEXES FLS_OUT_OF_INDEXES
-#endif
-
-#define TlsAlloc()  FlsAlloc(NULL)
-#define TlsSetValue FlsSetValue
-#define TlsGetValue FlsGetValue
-#endif
-
 static DWORD thread_local_storage = TLS_OUT_OF_INDEXES;
 static SDL_bool generic_local_storage = SDL_FALSE;
 
@@ -73,7 +61,7 @@ int SDL_SYS_SetTLSData(SDL_TLSData *data)
     }
 
     if (!TlsSetValue(thread_local_storage, data)) {
-        return WIN_SetError("TlsSetValue()");
+        return XBOX_360_SetError("TlsSetValue()");
     }
     return 0;
 }
@@ -91,6 +79,6 @@ void SDL_SYS_QuitTLSData(void)
     }
 }
 
-#endif /* SDL_THREAD_WINDOWS */
+#endif /* SDL_THREAD_XBOX_360 */
 
 /* vi: set ts=4 sw=4 expandtab: */
