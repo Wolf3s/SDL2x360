@@ -83,7 +83,6 @@
 
 #ifdef SDL_XAUDIO2_HAS_SDK
 
-
 #if !defined(SDL_XAUDIO2_H_)
 #define INITGUID 1
 #include <xaudio2.h>
@@ -118,7 +117,6 @@ struct SDL_PrivateAudioData
     int mixlen;
     Uint8 *nextbuf;
 };
-
 
 static void
 XAUDIO2_DetectDevices(void)
@@ -173,7 +171,6 @@ static void STDMETHODCALLTYPE VoiceCBOnVoiceProcessPassStart(THIS_ UINT32 b) {}
 static void STDMETHODCALLTYPE VoiceCBOnVoiceProcessPassEnd(THIS) {}
 static void STDMETHODCALLTYPE VoiceCBOnBufferStart(THIS_ void *data) {}
 static void STDMETHODCALLTYPE VoiceCBOnLoopEnd(THIS_ void *data) {}
-
 
 static Uint8 *
 XAUDIO2_GetDeviceBuf(_THIS)
@@ -328,6 +325,11 @@ XAUDIO2_OpenDevice(_THIS, const char *devname)
         case AUDIO_S16:
         case AUDIO_S32:
         case AUDIO_F32:
+#ifdef __XBOX_360__
+        case AUDIO_S16MSB:
+        case AUDIO_S32MSB:
+        case AUDIO_F32MSB:
+#endif
             this->spec.format = test_format;
             valid_format = 1;
             break;
@@ -428,7 +430,6 @@ XAUDIO2_Deinitialize(void)
 }
 
 #endif  /* SDL_XAUDIO2_HAS_SDK */
-
 
 static SDL_bool
 XAUDIO2_Init(SDL_AudioDriverImpl * impl)

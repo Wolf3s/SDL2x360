@@ -290,6 +290,7 @@
     <ClCompile Include="src\libm\s_scalbn.c" />
     <ClCompile Include="src\libm\s_sin.c" />
     <ClCompile Include="src\libm\s_tan.c" />
+    <ClCompile Include="src\loadso\dummy\SDL_sysloadso.c" />
     <ClCompile Include="src\locale\SDL_locale.c" />
     <ClCompile Include="src\power\SDL_power.c" />
     <ClCompile Include="src\render\SDL_d3dmath.c" />

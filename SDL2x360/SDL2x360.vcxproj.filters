@@ -94,6 +94,12 @@
     <Filter Include="src\render\xbox360">
       <UniqueIdentifier>{049b08c8-2f03-4d37-927a-67726aaee983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\loadso">
+      <UniqueIdentifier>{122e0efb-4de5-463c-bdd5-6ce2a1532566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\loadso\dummy">
+      <UniqueIdentifier>{87693a49-f6cc-483d-af16-f22cf1382482}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SDL_video.h">
@@ -1089,6 +1095,9 @@
     </ClCompile>
     <ClCompile Include="src\render\xbox360\SDL_shaders_d3d.c">
       <Filter>src\render\xbox360</Filter>
+    </ClCompile>
+    <ClCompile Include="src\loadso\dummy\SDL_sysloadso.c">
+      <Filter>src\loadso\dummy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

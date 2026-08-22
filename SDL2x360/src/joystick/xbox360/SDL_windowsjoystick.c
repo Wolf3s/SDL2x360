@@ -158,7 +158,6 @@ JoyStick_DeviceData *SYS_Joystick; /* array to hold joystick ID values */
 
 #if !defined(__WINRT__)
 
-
 /* Function/thread to scan the system for joysticks. */
 static int SDLCALL SDL_JoystickThread(void *_data)
 {
@@ -279,7 +278,6 @@ static int WINDOWS_JoystickInit(void)
 
     WINDOWS_JoystickDetect();
 
-
 #if defined(__XBOXONE__) || defined(__XBOXSERIES__)
     /* On Xbox, force create the joystick thread for device detection (since other methods don't work */
     s_bJoystickThread = SDL_TRUE;
@@ -307,6 +305,10 @@ static int WINDOWS_JoystickGetCount(void)
 void WINDOWS_JoystickDetect(void)
 {
     JoyStick_DeviceData *pCurList = NULL;
+
+#ifdef __XBOX_360__
+    s_bWindowsDeviceChanged = SDL_TRUE;
+#endif
 
     /* only enum the devices if the joystick thread told us something changed */
     if (!s_bWindowsDeviceChanged) {

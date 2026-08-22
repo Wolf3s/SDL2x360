@@ -30,6 +30,7 @@
 #include "../SDL_pixels_c.h"
 
 #include "SDL_xbox360video.h"
+#include "SDL_syswm.h"
 
 /* Initialization/Query functions */
 static int  XBOX_360_VideoInit(_THIS);
@@ -58,6 +59,19 @@ XBOX_360_DeleteDevice(SDL_VideoDevice* device)
         device->driverdata = NULL;
     }
     SDL_free(device);
+}
+
+static SDL_bool
+XBOX_360_GetWindowWMInfo(_THIS, SDL_Window *window, struct SDL_SysWMinfo *info)
+{
+    (void)_this;
+    (void)window;
+    if (info == NULL) {
+        return SDL_FALSE;
+    }
+    info->subsystem = SDL_SYSWM_WINDOWS;
+    SDL_zero(info->info);
+    return SDL_TRUE;
 }
 
 static SDL_VideoDevice*
@@ -110,7 +124,7 @@ XBOX_360_CreateDevice(void)
     device->SetWindowGammaRamp = NULL;
     device->GetWindowGammaRamp = NULL;
     device->DestroyWindow = XBOX_360_DestroyWindow;
-    device->GetWindowWMInfo = NULL;
+    device->GetWindowWMInfo = XBOX_360_GetWindowWMInfo;
 
     /* No software window framebuffer path on Xbox */
     device->CreateWindowFramebuffer = NULL;
@@ -196,25 +210,11 @@ XBOX_360_VideoInit(_THIS)
         current_mode.h = pWindow->h;
         current_mode.refresh_rate = 60;
     }
-#if 0
     else {
-        /* Pick best available mode based on Xbox dashboard/video flags. */
-        DWORD vflags = XGetVideoFlags();
-
-        if (vflags & XC_VIDEO_FLAGS_HDTV_1080i) {
-            current_mode.w = 1920; current_mode.h = 1080; current_mode.refresh_rate = 60;
-        }
-        else if (vflags & XC_VIDEO_FLAGS_HDTV_720p) {
-            current_mode.w = 1280; current_mode.h = 720;  current_mode.refresh_rate = 60;
-        }
-        else if (vflags & XC_VIDEO_FLAGS_HDTV_480p) {
-            current_mode.w = 720;  current_mode.h = 480;  current_mode.refresh_rate = 60;
-        }
-        else {
-            current_mode.w = 640;  current_mode.h = 480;  current_mode.refresh_rate = 60;
-        }
+        current_mode.w = 1280;
+        current_mode.h = 720;
+        current_mode.refresh_rate = 60;
     }
-#endif
     /* 32 bpp default; keep consistent with renderer (ARGB8888) */
     current_mode.format = SDL_PIXELFORMAT_ARGB8888;
     current_mode.driverdata = NULL;

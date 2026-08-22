@@ -9,8 +9,10 @@ using [RXDK-libSDL2x with tracker support](https://github.com/Team-Resurgent/RXD
 - SDL2
 
 # TODO:
-- Implement renderer and video support
 - Test on real hardware
 
 # Copyright
 2026 André "Wolf3s" Guilherme 
+
+# Credits
+@MrMilenko for the video and audio patches

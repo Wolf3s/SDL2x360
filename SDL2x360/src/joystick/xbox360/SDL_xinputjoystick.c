@@ -179,6 +179,12 @@ static void AddXInputDevice(Uint8 userid, BYTE SubType, JoyStick_DeviceData **pC
     }
 #endif
 
+#ifdef __XBOX_360__
+    if (SubType == XINPUT_DEVSUBTYPE_UNKNOWN) {
+        SubType = XINPUT_DEVSUBTYPE_GAMEPAD;
+    }
+#endif
+
     if (SDL_XInputUseOldJoystickMapping() && SubType != XINPUT_DEVSUBTYPE_GAMEPAD) {
         return;
     }
@@ -432,8 +438,7 @@ void SDL_XINPUT_JoystickUpdate(SDL_Joystick *joystick)
         return;
     }
 
-#if defined(__XBOXONE__) || defined(__XBOXSERIES__)
-    /* XInputOnGameInput doesn't ever change dwPacketNumber, so have to just update every frame */
+#if defined(__XBOXONE__) || defined(__XBOXSERIES__) || defined(__XBOX_360__)
     UpdateXInputJoystickState(joystick, &XInputState, &XBatteryInformation);
 #else
     /* only fire events if the data changed from last time */

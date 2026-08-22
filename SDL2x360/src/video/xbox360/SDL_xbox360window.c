@@ -26,6 +26,7 @@
 
 #include "SDL_xbox360video.h"
 #include "SDL_xbox360window.h"
+#include "../../events/SDL_keyboard_c.h"
 
 extern SDL_DisplayMode g_XboxDesktopMode;
 
@@ -42,6 +43,11 @@ XBOX_360_GetDisplayModes(_THIS, SDL_VideoDisplay* display)
     mode.format = SDL_PIXELFORMAT_ARGB8888;
     mode.w = VideoMode.dwDisplayWidth;
     mode.h = VideoMode.dwDisplayHeight;
+
+    if (mode.w > 1280 || mode.h > 720) {
+        mode.w = 1280;
+        mode.h = 720;
+    }
     mode.refresh_rate = (int)VideoMode.RefreshRate;
     mode.driverdata = NULL;
 
@@ -56,7 +62,6 @@ int XBOX_360_SetDisplayMode(_THIS, SDL_VideoDisplay* display, SDL_DisplayMode* m
     return 0;  // pretend success, but state is consistent
 }
 
-
 int XBOX_360_CreateWindow(_THIS, SDL_Window* window)
 {
     const SDL_DisplayMode* dm = &g_XboxDesktopMode;  // set in XBOX_VideoInit
@@ -70,6 +75,9 @@ int XBOX_360_CreateWindow(_THIS, SDL_Window* window)
 
     // (Optional) ensure no residual viewport issues:
     // Your renderer init should set viewport to full size.
+
+    window->flags |= SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS;
+    SDL_SetKeyboardFocus(window);
 
     XBOX_360_PumpEvents(_this);
     return 0;

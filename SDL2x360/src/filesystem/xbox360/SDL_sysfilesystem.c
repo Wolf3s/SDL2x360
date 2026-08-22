@@ -31,17 +31,15 @@
 char*
 SDL_GetBasePath(void)
 {
-	char strPath[MAX_PATH];
-	strcpy(strPath, "D:\\");
-	return &strPath[0];
+	return SDL_strdup("game:\\");
 }
 
 char*
 SDL_GetPrefPath(const char* org, const char* app)
 {
-	char strPath[MAX_PATH];
-	strcpy(strPath, "D:\\");
-	return &strPath[0];
+	(void) org;
+	(void) app;
+	return SDL_strdup("game:\\");
 }
 
 #endif /* SDL_FILESYSTEM_XBOX_RXDK */
