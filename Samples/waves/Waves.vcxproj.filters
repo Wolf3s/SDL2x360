@@ -1,21 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Media">
-      <UniqueIdentifier>{117b45a8-bad7-4590-a467-90719c4d06e9}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="waves.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="waves.cpp" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_common.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_memory.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_crc32.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_assert.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_compare.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_font.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_fuzzer.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_harness.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_imageBlit.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_imageBlitBlend.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_imageFace.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_imagePrimitives.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_imagePrimitivesBlend.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_log.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_md5.c" />
+    <ClCompile Include="..\..\SDL2x360\src\test\SDL_test_random.c" />
   </ItemGroup>
 </Project>

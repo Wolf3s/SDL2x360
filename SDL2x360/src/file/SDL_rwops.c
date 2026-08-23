@@ -77,7 +77,7 @@ static SDL_bool IsRegularFileOrPipe(FILE* f) { (void)f; return SDL_TRUE; }
 #endif
 
 
-#if (defined(__WIN32__) || defined(__GDK__)) && !defined(__XBOX__)
+#if (defined(__WIN32__) || defined(__GDK__)) && !defined(__XBOX__) && !defined(__XBOX_360__)
 
 /* Functions to read/write Win32 API file pointers */
 

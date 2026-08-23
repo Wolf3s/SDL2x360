@@ -58,3 +58,5 @@ Debug/
 Temp.txt
 libs/
 *.ipch
+/SDL2x360_mixer/Release_LTCG
+/SDL2x360/Release_LTCG

@@ -9,7 +9,6 @@ using [RXDK-libSDL2x with tracker support](https://github.com/Team-Resurgent/RXD
 - SDL2
 
 # TODO:
-- Test on real hardware
 
 # Copyright
 2026 André "Wolf3s" Guilherme 

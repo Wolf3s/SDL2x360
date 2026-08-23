@@ -62,7 +62,7 @@ SDLTest_CommonState *SDLTest_CommonCreateState(char **argv, Uint32 flags)
 {
     SDLTest_CommonState *state;
 
-#ifndef __XBOX__
+#if !defined(__XBOX__) && !defined(__XBOX_360__)
     /* Do this first so we catch all allocations */
     for (int i = 1; argv[i]; ++i) {
         if (SDL_strcasecmp(argv[i], "--trackmem") == 0) {
@@ -81,7 +81,7 @@ SDLTest_CommonState *SDLTest_CommonCreateState(char **argv, Uint32 flags)
     /* Initialize some defaults */
     state->argv = argv;
     state->flags = flags;
-#ifdef __XBOX__
+#if defined(__XBOX__) || defined(__XBOX_360__)
 	state->window_title = "";
 #else
 	state->window_title = argv[0];
@@ -690,6 +690,7 @@ static void SDLTest_PrintDisplayOrientation(char *text, size_t maxlen, SDL_Displ
 
 static void SDLTest_PrintWindowFlag(char *text, size_t maxlen, Uint32 flag)
 {
+#ifndef __XBOX_360__
     switch (flag) {
     case SDL_WINDOW_FULLSCREEN:
         SDL_snprintfcat(text, maxlen, "FULLSCREEN");
@@ -764,6 +765,7 @@ static void SDLTest_PrintWindowFlag(char *text, size_t maxlen, Uint32 flag)
         SDL_snprintfcat(text, maxlen, "0x%8.8x", flag);
         break;
     }
+#endif
 }
 
 static void SDLTest_PrintWindowFlags(char *text, size_t maxlen, Uint32 flags)
@@ -2059,7 +2061,7 @@ void SDLTest_CommonEvent(SDLTest_CommonState *state, SDL_Event *event, int *done
             break;
 
         case SDLK_c:
-#ifndef __XBOX__
+#if !defined(__XBOX__) && !defined(__XBOX_360__)
             if (withControl) {
                 /* Ctrl-C copy awesome text! */
                 SDL_SetClipboardText("SDL rocks!\nYou know it!");
@@ -2096,7 +2098,7 @@ void SDLTest_CommonEvent(SDLTest_CommonState *state, SDL_Event *event, int *done
             }
             break;
         case SDLK_v:
-#ifndef __XBOX__
+#if !defined(__XBOX__) && !defined(__XBOX_360__)
             if (withControl) {
                 /* Ctrl-V paste awesome text! */
                 char *text = SDL_GetClipboardText();

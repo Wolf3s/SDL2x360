@@ -1,10 +1,8 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 
-typedef enum {
-	false,
-	true
-} bool;
+#define false 0
+#define true 1
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
@@ -15,7 +13,7 @@ SDL_Texture* LoadTextureFromFile(SDL_Renderer* Renderer, char* filepath) {
 
 	LoadingSurface = SDL_LoadBMP(filepath);
 	ReturnTexture = SDL_CreateTextureFromSurface(Renderer, LoadingSurface);
-	free(LoadingSurface);
+	SDL_FreeSurface(LoadingSurface);
 
 	return ReturnTexture;
 }
@@ -39,8 +37,8 @@ int main(int argc, char* argv[]) {
 	Renderer = SDL_CreateRenderer(MainWindow, -1, SDL_RENDERER_ACCELERATED);
 
 	/* Load Assets */
-	Background = LoadTextureFromFile(Renderer, "D:\\Lose_my_breath.bmp");
-	Music = Mix_LoadMUS("D:\\intro_number_130.mod");
+	Background = LoadTextureFromFile(Renderer, "game:\\Lose_my_breath.bmp");
+	Music = Mix_LoadMUS("game:\\lose-my-breath.wav");
 
 	/* Play Music */
 	Mix_PlayMusic(Music, -1);
@@ -50,6 +48,14 @@ int main(int argc, char* argv[]) {
 		SDL_RenderCopy(Renderer, Background, NULL, NULL);
 		SDL_RenderPresent(Renderer);
 	}
+
+    SDL_DestroyTexture(Background);
+    SDL_DestroyRenderer(Renderer);
+    SDL_DestroyWindow(MainWindow);
+
+    Mix_CloseAudio();
+    SDL_Quit();
+
 
 	return 0;
 }
