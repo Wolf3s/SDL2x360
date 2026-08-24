@@ -118,7 +118,7 @@ TCPsocket SDLNet_TCP_Open(IPaddress *ip)
         {
             fcntl(sock->channel, F_SETFL, O_NONBLOCK);
         }
-#elif defined(WIN32) || defined(__XBOX__)
+#elif defined(WIN32) || defined(__XBOX__) || defined(__XBOX_360__)
         {
             unsigned long mode = 1;
             ioctlsocket (sock->channel, FIONBIO, &mode);
@@ -187,7 +187,7 @@ TCPsocket SDLNet_TCP_Accept(TCPsocket server)
         SDLNet_SetError("accept() failed");
         goto error_return;
     }
-#if defined(WIN32) || defined(__XBOX__) 
+#if defined(WIN32) || defined(__XBOX__) || defined(__XBOX_360__)
     {
         /* passing a zero value, socket mode set to block on */
         unsigned long mode = 0;

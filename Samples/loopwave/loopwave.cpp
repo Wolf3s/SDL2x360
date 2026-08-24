@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "SDL.h"  // use one SDL header
+#include <SDL.h>  // use one SDL header
 
 static struct {
     SDL_AudioSpec spec;
@@ -132,7 +132,7 @@ int main(int argc, char* argv[])
     }
 
     if (argc > 1) SDL_strlcpy(filename, argv[1], sizeof(filename));
-    else          SDL_strlcpy(filename, "D:\\sample.wav", sizeof(filename));
+    else          SDL_strlcpy(filename, "game:\\sample.wav", sizeof(filename));
 
     if (SDL_LoadWAV(filename, &wave.spec, &wave.sound, &wave.soundlen) == NULL) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't load %s: %s", filename, SDL_GetError());

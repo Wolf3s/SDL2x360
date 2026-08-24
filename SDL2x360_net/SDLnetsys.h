@@ -40,7 +40,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <iphlpapi.h>
-#elif defined(__XBOX__)
+#elif defined(__XBOX__) || defined(__XBOX_360__)
 #define __USE_W32_SOCKETS
 #include <xtl.h>
 #include <winsockx.h>
@@ -66,7 +66,7 @@
 #include <netdb.h>
 #endif /* WIN32 */
 
-#if defined(__OS2__) || defined(__XBOX__)
+#if defined(__OS2__) || defined(__XBOX__) || defined(__XBOX_360__)
 typedef int socklen_t;
 #elif 0
 /* FIXME: What platforms need this? */

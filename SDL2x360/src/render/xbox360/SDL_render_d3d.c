@@ -1122,10 +1122,10 @@ static int D3D_RunCommandQueue(SDL_Renderer *renderer, SDL_RenderCommand *cmd, v
             data->vertexBuffers[vboidx] = vbo;
             data->vertexBufferSize[vboidx] = vbo ? vertsize : 0;
         }
-#ifdef WIP
+
         if (vbo) {
             void *ptr;
-            if (FAILED(IDirect3DVertexBuffer9_Lock(vbo, 0, (UINT)vertsize, &ptr, D3DLOCK_DISCARD))) {
+            if (FAILED(IDirect3DVertexBuffer9_Lock(vbo, 0, (UINT)vertsize, &ptr, 0))) {
                 vbo = NULL; /* oh well, we'll do immediate mode drawing.  :(  */
             } else {
                 SDL_memcpy(ptr, vertices, vertsize);
@@ -1134,7 +1134,7 @@ static int D3D_RunCommandQueue(SDL_Renderer *renderer, SDL_RenderCommand *cmd, v
                 }
             }
         }
-#endif
+
         /* cycle through a few VBOs so D3D has some time with the data before we replace it. */
         if (vbo) {
             data->currentVertexBuffer++;

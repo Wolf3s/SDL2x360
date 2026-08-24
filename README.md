@@ -7,8 +7,12 @@ using [RXDK-libSDL2x with tracker support](https://github.com/Team-Resurgent/RXD
 
 # Working Libraries:
 - SDL2
+- SDL2_mixer
+- SDL2_net
 
 # TODO:
+- Port SDL2_image
+- Port SDL2_ttf
 
 # Copyright
 2026 André "Wolf3s" Guilherme 

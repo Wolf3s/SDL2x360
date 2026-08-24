@@ -180,7 +180,7 @@ void SDLNet_Quit(void)
     }
 }
 
-#ifdef __XBOX__
+#if defined(__XBOX__) || defined(__XBOX_360__)
 XNDNS* XResolveHost(const char* host) {
     // hostname not found in cache.
     // do a DNS lookup
@@ -219,7 +219,7 @@ int SDLNet_ResolveHost(IPaddress *address, const char *host, Uint16 port)
     } else {
         address->host = inet_addr(host);
         if ( address->host == INADDR_NONE ) {
-#ifdef __XBOX__
+#if defined(__XBOX__) || defined(__XBOX_360__)
             XNDNS* pDns = NULL;
             pDns = XResolveHost(host);
             if (pDns) {
@@ -258,7 +258,7 @@ int SDLNet_ResolveHost(IPaddress *address, const char *host, Uint16 port)
  */
 const char *SDLNet_ResolveIP(const IPaddress *ip)
 {
-#ifndef __XBOX__
+#if !defined(__XBOX__) && !defined(__XBOX_360__)
     struct hostent *hp;
     struct in_addr in;
 
@@ -316,7 +316,7 @@ int SDLNet_GetLocalAddresses(IPaddress* addresses, int maxcount)
     }
     closesocket(sock);
 
-#elif defined(__XBOX__)
+#elif defined(__XBOX__) || defined(__XBOX_360__)
 
     /* Xbox: wait briefly for XNet to provide a title IP, then return it. */
     if (maxcount > 0) {

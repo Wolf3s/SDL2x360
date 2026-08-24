@@ -22,7 +22,7 @@
 #include "SDLnetsys.h"
 #include "SDL_net.h"
 
-#if defined(__WIN32__) || defined(__XBOX__) || defined(__OS2__)
+#if defined(__WIN32__) || defined(__XBOX__) || defined(__XBOX_360__) || defined(__OS2__)
 #define srandom srand
 #define random  rand
 #endif
