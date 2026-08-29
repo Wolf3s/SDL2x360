@@ -15,6 +15,7 @@ using [RXDK-libSDL2x with tracker support](https://github.com/Team-Resurgent/RXD
 # TODO:
 - Port all the examples to Xbox 360
 - Improve SDL2x360_mixer
+- Add FakeGL from D3DQuakeX360
 
 # Copyright
 2026 André "Wolf3s" Guilherme 
