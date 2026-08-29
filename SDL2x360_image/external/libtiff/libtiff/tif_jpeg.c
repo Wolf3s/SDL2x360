@@ -376,14 +376,18 @@ TIFFjpeg_has_multiple_scans(JPEGState* sp)
 static int
 TIFFjpeg_start_decompress(JPEGState* sp)
 {
+#ifndef _XBOX
         const char* sz_max_allowed_scan_number;
-        /* progress monitor */
+#endif
+		/* progress monitor */
         sp->cinfo.d.progress = &sp->progress;
         sp->progress.progress_monitor = TIFFjpeg_progress_monitor;
         sp->max_allowed_scan_number = 100;
+#ifndef _XBOX
         sz_max_allowed_scan_number = getenv("LIBTIFF_JPEG_MAX_ALLOWED_SCAN_NUMBER");
         if( sz_max_allowed_scan_number )
             sp->max_allowed_scan_number = atoi(sz_max_allowed_scan_number);
+#endif
 
 	return CALLVJPEG(sp, jpeg_start_decompress(&sp->cinfo.d));
 }

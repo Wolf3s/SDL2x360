@@ -5776,10 +5776,14 @@ TIFFFetchStripThing(TIFF* tif, TIFFDirEntry* dir, uint32 nstrips, uint64** lpp)
 	{
 		uint64* resizeddata;
 		const TIFFField* fip = TIFFFieldWithTag(tif,dir->tdir_tag);
+#ifndef _XBOX
 		const char* pszMax = getenv("LIBTIFF_STRILE_ARRAY_MAX_RESIZE_COUNT");
+#endif
 		uint32 max_nstrips = 1000000;
+#ifndef _XBOX
 		if( pszMax )
 			max_nstrips = (uint32) atoi(pszMax);
+#endif
 		TIFFReadDirEntryOutputErr(tif,TIFFReadDirEntryErrCount,
 		            module,
 		            fip ? fip->field_name : "unknown tagname",

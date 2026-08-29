@@ -9,10 +9,12 @@ using [RXDK-libSDL2x with tracker support](https://github.com/Team-Resurgent/RXD
 - SDL2
 - SDL2_mixer
 - SDL2_net
+- SDL2_image
+- SDL2_ttf
 
 # TODO:
-- Port SDL2_image
-- Port SDL2_ttf
+- Port all the examples to Xbox 360
+- Improve SDL2x360_mixer
 
 # Copyright
 2026 André "Wolf3s" Guilherme 

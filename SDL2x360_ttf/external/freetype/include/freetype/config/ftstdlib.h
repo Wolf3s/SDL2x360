@@ -117,7 +117,11 @@
 #define ft_fread     fread
 #define ft_fseek     fseek
 #define ft_ftell     ftell
+#ifdef _XBOX
+#define ft_snprintf  _snprintf
+#else
 #define ft_snprintf  snprintf
+#endif
 
 
   /**************************************************************************

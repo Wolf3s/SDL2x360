@@ -574,8 +574,10 @@
 #  include <alloc.h>
 #endif
 
-#if defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#if defined(_WIN32) && !defined(_XBOX) || defined(__WIN32__) || defined(__NT__)
 #  include <windows.h>
+#elif defined(_XBOX)
+#include <xtl.h>
 #endif
 #endif /* PNG_VERSION_INFO_ONLY */
 

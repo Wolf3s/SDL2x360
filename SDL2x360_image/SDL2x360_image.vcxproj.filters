@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{eea132dc-e936-4d96-b8b7-d67d66f561c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{15da664a-41e0-4df8-9511-11e65c087d70}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\SDL_image.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tiny_jpeg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\miniz.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanosvg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanosvgrast.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\qoi.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stb_image.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\IMG.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_avif.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_bmp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_gif.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_jpg.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_jxl.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_lbm.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_pcx.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_png.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_pnm.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_qoi.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_svg.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_tga.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_tif.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_webp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_xcf.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_xpm.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_xv.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IMG_xxx.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\IMG_ImageIO.m">
+      <Filter>src</Filter>
+    </None>
+  </ItemGroup>
+</Project>
