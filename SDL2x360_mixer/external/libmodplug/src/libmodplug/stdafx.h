@@ -40,11 +40,12 @@
 
 #define WIN32_LEAN_AND_MEAN
 
-#ifdef __XBOX__
+#if defined(__XBOX__) || defined(__XBOX_360__)
 #include <xtl.h>
 
 /* --- No <stdint.h>/<inttypes.h> on OG XDK --- */
 #undef HAVE_INTTYPES_H
+#ifndef __XBOX_360__
 #ifndef _SDL_XDK_STDINT_TYPES_
 #define _SDL_XDK_STDINT_TYPES_
 typedef   signed __int8   int8_t;
@@ -59,6 +60,9 @@ typedef unsigned __int64  uint64_t;
 typedef unsigned int      uintptr_t;
 #define _UINTPTR_T_DEFINED
 #endif
+#endif
+#else
+#include <stdint.h>
 #endif
 
 #define GlobalFreePtr(p) free((void *)(p))

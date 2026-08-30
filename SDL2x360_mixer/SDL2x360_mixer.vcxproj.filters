@@ -13,9 +13,6 @@
     <Filter Include="source\codecs\timidity">
       <UniqueIdentifier>{7ba8637c-dca2-451b-8113-18633cb561ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\codecs\minimp3">
-      <UniqueIdentifier>{4248afa0-b84e-4451-adf5-969895d0fbc5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SDL_mixer.h">
@@ -33,12 +30,6 @@
     <ClInclude Include="source\utils.h">
       <Filter>source</Filter>
     </ClInclude>
-    <ClInclude Include="source\codecs\music_wavpack.h">
-      <Filter>source\codecs</Filter>
-    </ClInclude>
-    <ClInclude Include="source\codecs\music_xmp.h">
-      <Filter>source\codecs</Filter>
-    </ClInclude>
     <ClInclude Include="source\codecs\load_aiff.h">
       <Filter>source\codecs</Filter>
     </ClInclude>
@@ -51,28 +42,13 @@
     <ClInclude Include="source\codecs\music_cmd.h">
       <Filter>source\codecs</Filter>
     </ClInclude>
-    <ClInclude Include="source\codecs\music_drflac.h">
-      <Filter>source\codecs</Filter>
-    </ClInclude>
     <ClInclude Include="source\codecs\music_flac.h">
-      <Filter>source\codecs</Filter>
-    </ClInclude>
-    <ClInclude Include="source\codecs\music_fluidsynth.h">
       <Filter>source\codecs</Filter>
     </ClInclude>
     <ClInclude Include="source\codecs\music_gme.h">
       <Filter>source\codecs</Filter>
     </ClInclude>
-    <ClInclude Include="source\codecs\music_minimp3.h">
-      <Filter>source\codecs</Filter>
-    </ClInclude>
     <ClInclude Include="source\codecs\music_modplug.h">
-      <Filter>source\codecs</Filter>
-    </ClInclude>
-    <ClInclude Include="source\codecs\music_mpg123.h">
-      <Filter>source\codecs</Filter>
-    </ClInclude>
-    <ClInclude Include="source\codecs\music_nativemidi.h">
       <Filter>source\codecs</Filter>
     </ClInclude>
     <ClInclude Include="source\codecs\music_ogg.h">
@@ -117,12 +93,6 @@
     <ClInclude Include="source\codecs\timidity\common.h">
       <Filter>source\codecs\timidity</Filter>
     </ClInclude>
-    <ClInclude Include="source\codecs\minimp3\minimp3.h">
-      <Filter>source\codecs\minimp3</Filter>
-    </ClInclude>
-    <ClInclude Include="source\codecs\minimp3\minimp3_ex.h">
-      <Filter>source\codecs\minimp3</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\effect_position.c">
@@ -143,12 +113,6 @@
     <ClCompile Include="source\utils.c">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="source\codecs\music_wavpack.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
-    <ClCompile Include="source\codecs\music_xmp.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
     <ClCompile Include="source\codecs\load_aiff.c">
       <Filter>source\codecs</Filter>
     </ClCompile>
@@ -161,34 +125,16 @@
     <ClCompile Include="source\codecs\music_cmd.c">
       <Filter>source\codecs</Filter>
     </ClCompile>
-    <ClCompile Include="source\codecs\music_drflac.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
     <ClCompile Include="source\codecs\music_flac.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
-    <ClCompile Include="source\codecs\music_fluidsynth.c">
       <Filter>source\codecs</Filter>
     </ClCompile>
     <ClCompile Include="source\codecs\music_gme.c">
       <Filter>source\codecs</Filter>
     </ClCompile>
-    <ClCompile Include="source\codecs\music_minimp3.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
     <ClCompile Include="source\codecs\music_modplug.c">
       <Filter>source\codecs</Filter>
     </ClCompile>
-    <ClCompile Include="source\codecs\music_mpg123.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
-    <ClCompile Include="source\codecs\music_nativemidi.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
     <ClCompile Include="source\codecs\music_ogg.c">
-      <Filter>source\codecs</Filter>
-    </ClCompile>
-    <ClCompile Include="source\codecs\music_ogg_stb.c">
       <Filter>source\codecs</Filter>
     </ClCompile>
     <ClCompile Include="source\codecs\music_opus.c">
@@ -246,9 +192,6 @@
     </None>
     <None Include="source\codecs\timidity\FAQ">
       <Filter>source\codecs\timidity</Filter>
-    </None>
-    <None Include="source\codecs\minimp3\LICENSE">
-      <Filter>source\codecs\minimp3</Filter>
     </None>
   </ItemGroup>
 </Project>

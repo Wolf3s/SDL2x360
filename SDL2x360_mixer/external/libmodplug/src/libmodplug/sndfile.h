@@ -613,7 +613,11 @@ public:
 	UINT GetMaxPosition() const;
 	void SetCurrentPos(UINT nPos);
 	void SetCurrentOrder(UINT nOrder);
+#ifdef __XBOX_360__
+	void GetTitle(LPSTR s) const { lstrcpyn(s, m_szNames[0],32); }
+#else
 	void GetTitle(LPSTR s) const { lstrcpyn((LPWSTR)s, (LPWSTR)m_szNames[0],32); }
+#endif
 	LPCSTR GetTitle() const { return m_szNames[0]; }
 	UINT GetSampleName(UINT nSample,LPSTR s=NULL) const;
 	UINT GetInstrumentName(UINT nInstr,LPSTR s=NULL) const;

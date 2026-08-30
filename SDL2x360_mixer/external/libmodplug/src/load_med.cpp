@@ -737,7 +737,11 @@ BOOL CSoundFile::ReadMed(const BYTE *lpStream, DWORD dwMemLength)
 				if (maxnamelen > 32) maxnamelen = 32;
 				for (UINT i=0; i<ientries; i++) if (i < m_nSamples)
 				{
+#ifdef __XBOX_360__
+					lstrcpyn(m_szNames[i+1], psznames + i*ientrysz, maxnamelen);
+#else
 					lstrcpyn((LPWSTR)m_szNames[i+1], (LPWSTR)psznames + i*ientrysz, maxnamelen);
+#endif
 					m_szNames[i+1][31] = '\0';
 				}
 			}
@@ -768,7 +772,11 @@ BOOL CSoundFile::ReadMed(const BYTE *lpStream, DWORD dwMemLength)
 					if (trknamelen > MAX_CHANNELNAME) trknamelen = MAX_CHANNELNAME;
 					if ((trknameofs) && (trknamelen < dwMemLength) && (trknameofs < dwMemLength - trknamelen))
 					{
+#ifdef __XBOX_360__
+						lstrcpyn(ChnSettings[i].szName, (LPCSTR)(lpStream+trknameofs), MAX_CHANNELNAME);
+#else
 						lstrcpyn((LPWSTR) ChnSettings[i].szName, (LPWSTR)(lpStream+trknameofs), MAX_CHANNELNAME);
+#endif
 						ChnSettings[i].szName[MAX_CHANNELNAME-1] = '\0';
 					}
 				}

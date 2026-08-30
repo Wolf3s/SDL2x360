@@ -384,6 +384,15 @@ void CSoundFile::ResetMidiCfg()
 //-----------------------------
 {
 	memset(&m_MidiCfg, 0, sizeof(m_MidiCfg));
+#ifdef __XBOX_360__
+	lstrcpy(&m_MidiCfg.szMidiGlb[MIDIOUT_START*32], "FF");
+	lstrcpy(&m_MidiCfg.szMidiGlb[MIDIOUT_STOP*32], "FC");
+	lstrcpy(&m_MidiCfg.szMidiGlb[MIDIOUT_NOTEON*32], "9c n v");
+	lstrcpy(&m_MidiCfg.szMidiGlb[MIDIOUT_NOTEOFF*32], "9c n 0");
+	lstrcpy(&m_MidiCfg.szMidiGlb[MIDIOUT_PROGRAM*32], "Cc p");
+	lstrcpy(&m_MidiCfg.szMidiSFXExt[0], "F0F000z");
+	for (int iz=0; iz<16; iz++) wsprintf(&m_MidiCfg.szMidiZXXExt[iz*32], "F0F001%02X", iz*8);
+#else
 	lstrcpy((LPWSTR) &m_MidiCfg.szMidiGlb[MIDIOUT_START*32], (LPWSTR) "FF");
 	lstrcpy((LPWSTR) &m_MidiCfg.szMidiGlb[MIDIOUT_STOP*32], (LPWSTR) "FC");
 	lstrcpy((LPWSTR) &m_MidiCfg.szMidiGlb[MIDIOUT_NOTEON*32], (LPWSTR) "9c n v");
@@ -391,6 +400,7 @@ void CSoundFile::ResetMidiCfg()
 	lstrcpy((LPWSTR) &m_MidiCfg.szMidiGlb[MIDIOUT_PROGRAM*32], (LPWSTR) "Cc p");
 	lstrcpy((LPWSTR) &m_MidiCfg.szMidiSFXExt[0], (LPWSTR) "F0F000z");
 	for (int iz=0; iz<16; iz++) wsprintf((LPWSTR) &m_MidiCfg.szMidiZXXExt[iz*32], (LPWSTR) "F0F001%02X", iz*8);
+#endif
 }
 
 
@@ -1781,7 +1791,11 @@ BOOL CSoundFile::SetPatternName(UINT nPat, LPCSTR lpszName)
 	if (nPat >= MAX_PATTERNS) return FALSE;
 	if (lpszName == NULL) return(FALSE);
 
+#ifdef __XBOX_360__
+	if (lpszName) lstrcpyn(szName, lpszName, MAX_PATTERNNAME);
+#else
 	if (lpszName) lstrcpyn((LPWSTR) szName, (LPWSTR) lpszName, MAX_PATTERNNAME);
+#endif
 	szName[MAX_PATTERNNAME-1] = 0;
 	if (!m_lpszPatternNames) m_nPatternNames = 0;
 	if (nPat >= m_nPatternNames)
