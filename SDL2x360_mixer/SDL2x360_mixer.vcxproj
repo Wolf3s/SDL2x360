@@ -171,7 +171,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeaderOutputFile>$(OutDir)$(ProjectName).pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PreprocessorDefinitions>_DEBUG;_XBOX;_LIB;__XBOX_360__;MUSIC_MID_TIMIDITY;MUSIC_WAV;MUSIC_MOD_MODPLUG;MUSIC_OGG;OGG_USE_STB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_XBOX;_LIB;__XBOX_360__;MUSIC_MID_TIMIDITY;MUSIC_WAV;MUSIC_MOD_MODPLUG;OGG_USE_STB</PreprocessorDefinitions>
       <CallAttributedProfiling>Callcap</CallAttributedProfiling>
       <CompileAs>Default</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)/SDL2x360/include;$(SolutionDir)/SDL2x360_mixer/include;$(SolutionDir)/SDL2x360_mixer/source;$(SolutionDir)/SDL2x360_mixer/source/codecs;$(SolutionDir)/SDL2x360_mixer/external/libmodplug/src;$(SolutionDir)/SDL2x360_mixer/external/libogg/include;$(SolutionDir)/SDL2x360_mixer/external/libvorbis/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -257,7 +257,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeaderOutputFile>$(OutDir)$(ProjectName).pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PreprocessorDefinitions>NDEBUG;_XBOX;_LIB;__XBOX_360__;MUSIC_MID_TIMIDITY;MUSIC_WAV;MUSIC_MOD_MODPLUG;MUSIC_OGG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_XBOX;_LIB;__XBOX_360__;MUSIC_MID_TIMIDITY;MUSIC_WAV;MUSIC_MOD_MODPLUG;OGG_USE_STB</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)/SDL2x360/include;$(SolutionDir)/SDL2x360_mixer/include;$(SolutionDir)/SDL2x360_mixer/source;$(SolutionDir)/SDL2x360_mixer/source/codecs;$(SolutionDir)/SDL2x360_mixer/external/libmodplug/src;$(SolutionDir)/SDL2x360_mixer/external/libogg/include;$(SolutionDir)/SDL2x360_mixer/external/libvorbis/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -280,7 +280,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeaderOutputFile>$(OutDir)$(ProjectName).pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PreprocessorDefinitions>NDEBUG;_XBOX;LTCG;_LIB;__XBOX_360__;MUSIC_MID_TIMIDITY;MUSIC_WAV;MUSIC_MOD_MODPLUG;MUSIC_OGG;OGG_USE_STB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_XBOX;LTCG;_LIB;__XBOX_360__;MUSIC_MID_TIMIDITY;MUSIC_WAV;MUSIC_MOD_MODPLUG;OGG_USE_STB</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)/SDL2x360/include;$(SolutionDir)/SDL2x360_mixer/include;$(SolutionDir)/SDL2x360_mixer/source;$(SolutionDir)/SDL2x360_mixer/source/codecs;$(SolutionDir)/SDL2x360_mixer/external/libmodplug/src;$(SolutionDir)/SDL2x360_mixer/external/libogg/include;$(SolutionDir)/SDL2x360_mixer/external/libvorbis/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
     </ClCompile>
